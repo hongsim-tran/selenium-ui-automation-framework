@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Alfio End to End Test" parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="simtran.core.retry.AnnotationTransformer"/>
+    </listeners>
+
+    <parameter name="target" value="prod"/>
+
+    <test verbose="2" preserve-order="true" name="Chrome Execution">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="simtran.alfiotest.tests.prelogin"/>
+        </packages>
+    </test>
+    <test verbose="2" preserve-order="true" name="Firefox Execution">
+        <parameter name="browser" value="firefox"/>
+        <packages>
+            <package name="simtran.alfiotest.tests.prelogin"/>
+        </packages>
+    </test>
+</suite>
