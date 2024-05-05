@@ -26,11 +26,11 @@ import static simtran.core.config.ConfigManager.config;
 
 public class PreconditionBase extends BaseTest {
     public final String imgFilePath = System.getProperty("user.dir") + "src/resources/test-data/image-test.png";
-    private Set<Cookie> cookies;
     protected String target;
+    private Set<Cookie> cookies;
 
     @BeforeClass(alwaysRun = true)
-    @Parameters ({"target", "browser"})
+    @Parameters({"target", "browser"})
     protected void getLoginCookies(String target, String browser) {
         MyLogger.debug("Start getting cookies...!");
         driver = new DriverManager().createDriverInstance(browser);
@@ -52,7 +52,7 @@ public class PreconditionBase extends BaseTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters ({"target", "browser"})
+    @Parameters({"target", "browser"})
     @Override
     public void setup(String target, String browser) {
         softAssert = new SoftAssert();

@@ -20,11 +20,10 @@ public class ExcelReader {
     private XSSFSheet sheet;
     private XSSFRow row = null;
     private XSSFCell cell = null;
-    private String testDataFilePath = "/test-data/data.xlsx";
+    private final String testDataFilePath = "/test-data/data.xlsx";
 
     /**
      * Constructs a new ExcelReader instance by loading the Excel file located at the specified resource path.
-     *
      */
     public ExcelReader() {
         InputStream ins = getClass().getResourceAsStream(testDataFilePath);
@@ -42,8 +41,8 @@ public class ExcelReader {
      * Retrieves the formatted value of a cell from the specified sheet, row, and column.
      *
      * @param sheetName The name of the Excel sheet containing the cell.
-     * @param rowNum The row number (zero-based) of the cell.
-     * @param colNum The column number (zero-based) of the cell.
+     * @param rowNum    The row number (zero-based) of the cell.
+     * @param colNum    The column number (zero-based) of the cell.
      * @return The formatted value of the cell as an Object.
      */
     public Object getCellData(String sheetName, int rowNum, int colNum) {

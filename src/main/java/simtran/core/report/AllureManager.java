@@ -2,7 +2,6 @@ package simtran.core.report;
 
 import com.google.common.collect.ImmutableMap;
 import io.qameta.allure.Attachment;
-import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import simtran.core.wdm.DriverManager;
@@ -19,6 +18,7 @@ public class AllureManager {
 
     /**
      * Sets environment information for Allure reports.
+     *
      * @param target target environment
      */
     public static void setAllureEnvironment(String target) {

@@ -44,6 +44,7 @@ public class DateTimeUtils {
 
     /**
      * Format a date time object as a string in a specified format
+     *
      * @param localDateTime
      * @param formatPattern
      * @return a date time as a string
@@ -60,6 +61,7 @@ public class DateTimeUtils {
 
     /**
      * Generate a random LocalDateTime object within 2 specified date times in String type
+     *
      * @param startDateTime
      * @param endDateTime
      * @param formatPattern specify the format pattern of the inputted date times
@@ -74,6 +76,7 @@ public class DateTimeUtils {
 
     /**
      * Generate a random LocalDateTime object before a specified date time in String type
+     *
      * @param endDateTime
      * @param formatPattern specify the format pattern of the inputted date time
      * @return a LocalDateTime before endDateTime
@@ -88,6 +91,7 @@ public class DateTimeUtils {
 
     /**
      * Generate a random LocalDateTime object after a specified date time in String type
+     *
      * @param startDateTime
      * @param formatPattern specify the format pattern of the inputted date time
      * @return a LocalDateTime after startDateTime
@@ -102,6 +106,7 @@ public class DateTimeUtils {
 
     /**
      * Generate a random LocalDateTime object before the current time
+     *
      * @return a LocalDateTime
      */
     public static LocalDateTime randomDateTimeBeforeNow() {
@@ -113,6 +118,7 @@ public class DateTimeUtils {
 
     /**
      * Generate a random LocalDateTime object within a specified date time in String type and current time
+     *
      * @param startDateTime
      * @param formatPattern specify the format pattern of the inputted date times
      * @return a LocalDateTime within startDateTime and current time
@@ -125,6 +131,7 @@ public class DateTimeUtils {
 
     /**
      * Generate a random LocalDateTime object after the current time
+     *
      * @return a LocalDateTime
      */
     public static LocalDateTime randomDateTimeAfterNow() {
@@ -137,6 +144,7 @@ public class DateTimeUtils {
 
     /**
      * Generate a random LocalDateTime object within current time and a specified date time in String type
+     *
      * @param endDateTime
      * @param formatPattern specify the format pattern of the inputted date times
      * @return a LocalDateTime within current time and endDateTime

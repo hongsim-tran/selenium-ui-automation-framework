@@ -14,7 +14,7 @@ public class RandomGenerator {
     /**
      * Generates a random value from the given enum type.
      *
-     * @param e The class object representing the enum type.
+     * @param e   The class object representing the enum type.
      * @param <T> The type of the enum elements (must be an Enum).
      * @return A random element from the specified enum.
      * @throws IllegalArgumentException If the provided class is not an Enum type.

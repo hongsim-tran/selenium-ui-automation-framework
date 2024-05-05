@@ -16,6 +16,7 @@ public class DBConnection {
 
     /**
      * Get a connection to database
+     *
      * @param target target environment
      */
     public static void getConnection(String target) {
@@ -29,6 +30,7 @@ public class DBConnection {
 
     /**
      * Execute an SQL query and return results
+     *
      * @param query sql query
      * @return ResultSet
      */
@@ -43,6 +45,7 @@ public class DBConnection {
 
     /**
      * Execute an sql query
+     *
      * @param query sql query
      */
     public static void executeUpdate(String query) {
