@@ -15,7 +15,7 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 
 * For my sample testing project, I'm using [Alfio](https://github.com/alfio-event/alf.io)
 
-**### Installation**
+### **Installation**
 
 1. **Clone the Project:**
 
