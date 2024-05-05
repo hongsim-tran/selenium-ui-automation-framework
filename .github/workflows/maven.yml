@@ -15,7 +15,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+
+  prod-test:
 
     runs-on: macos-latest
 

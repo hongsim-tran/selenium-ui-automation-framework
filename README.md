@@ -24,6 +24,8 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 
 2. **Run Tests:**
 
+There are 2 profiles supported: local and production.
+
     `cd STAutomationFramework`
 
 * Local environment:
