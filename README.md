@@ -9,7 +9,7 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 
 * Java 21
 
-* Maven 3.9.6
+* Maven 3.9.6 (This build includes a Maven wrapper, so you don't need to install Maven on your system to run the project's build commands)
 
 * Allure Report 2.28.0
 
@@ -28,11 +28,11 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 
 * Local environment:
   * Prerequisite: Have [Alfio](https://github.com/alfio-event/alf.io) installed locally. 
-  * Run tests: `mvn clean install -Plocal-test`
+  * Run tests: `./mvnw clean install -Plocal-test`
   
   
 * Production environment:
-  * Run tests: `mvn clean install -Pprod-test`
+  * Run tests: `./mvnw clean install -Pprod-test`
 
 
 
