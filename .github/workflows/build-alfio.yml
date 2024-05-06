@@ -1,56 +1,60 @@
 name: Build Alfio
 
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: 'Build'
+        default: true
+        type: boolean
+        required: true
 
 jobs:
 
-  container-job:
-    runs-on: macos-latest
+  build-afio:
+    runs-on: ubuntu-latest
 
     services:
       postgres:
-        image: postgres
+        image: postgres:latest
         env:
           POSTGRES_PASSWORD: postgres
-
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
 
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Connect to PostgreSQL
-        run: node client.js
-
-        env:
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
-
-      - name: Check out Alfio code
-        uses: actions/checkout@v4
-        with:
-          repository: 'hongsim-tran/alf.io'
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'oracle'
           java-version: '17'
 
-      - name: Gradle build
-        run: ./gradlew clean
+      - name: Check out Alfio repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'hongsim-tran/alf.io'
+          token: ${{secrets.ACCESS_TOKEN}}
 
-      - name: Alfio build
-        run: ./gradlew -Pprofile=dev :bootRun
+      - name: Install dependencies
+        run: |
+          npm install
+          npm ci
+
+      - name: Connect to PostgreSQL
+        run: node client.js
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+
+      - name: Gradle build
+        run: |
+          ./gradlew clean
+          ./gradlew -Pprofile=dev :bootRun
 
 
 
