@@ -14,18 +14,18 @@ jobs:
   build-afio:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_PASSWORD: postgres
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+#    services:
+#      postgres:
+#        image: postgres:latest
+#        env:
+#          POSTGRES_PASSWORD: postgres
+#        ports:
+#          - 5432:5432
+#        options: >-
+#          --health-cmd pg_isready
+#          --health-interval 10s
+#          --health-timeout 5s
+#          --health-retries 5
 
     steps:
       - name: Setup Java
@@ -34,22 +34,20 @@ jobs:
           distribution: 'oracle'
           java-version: '17'
 
+      - name: Setup PostgreSQL database
+        id: postgres
+        uses: ikalnytskyi/action-setup-postgres@v6
+        with:
+          username: postgres
+          password: password
+          database: alfio
+          port: 5432
+
       - name: Check out Alfio repository
         uses: actions/checkout@v4
         with:
           repository: 'hongsim-tran/alf.io'
           token: ${{secrets.ACCESS_TOKEN}}
-
-      - name: Install dependencies
-        run: |
-          npm install
-          npm ci
-
-      - name: Connect to PostgreSQL
-        run: node client.js
-        env:
-          POSTGRES_HOST: localhost
-          POSTGRES_PORT: 5432
 
       - name: Gradle build
         run: |
