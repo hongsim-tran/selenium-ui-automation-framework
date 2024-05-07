@@ -1,0 +1,50 @@
+name: Test execution
+on:
+  workflow_dispatch:
+    inputs:
+      run:
+        description: 'Target Environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+
+      macOS:
+        description: 'Mac OS'
+        required: true
+        default: true
+        type: boolean
+
+      linux:
+        description: 'Linux/ Ubuntu'
+        required: true
+        default: true
+        type: boolean
+
+      windows:
+        description: 'Windows'
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+
+  prod-test:
+    name: Run test on Production
+
+    if: ${{inputs.macOS}}
+    runs-on: macos-latest
+
+    steps:
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+         java-version: '21'
+         distribution: 'oracle'
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute test
+        run: ./mvnw clean install -Pprod-test

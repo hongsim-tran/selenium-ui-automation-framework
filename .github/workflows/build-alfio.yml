@@ -4,28 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       build:
-        description: 'Build'
-        default: true
-        type: boolean
+        description: 'Test Environment'
         required: true
+        default: 'local'
+        type: choice
+        options:
+          - local
+          - production
 
 jobs:
 
   build-afio:
+    name: Build Alfio
     runs-on: ubuntu-latest
-
-#    services:
-#      postgres:
-#        image: postgres:latest
-#        env:
-#          POSTGRES_PASSWORD: postgres
-#        ports:
-#          - 5432:5432
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
 
     steps:
       - name: Setup Java
@@ -47,12 +38,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 'hongsim-tran/alf.io'
-          token: ${{secrets.ACCESS_TOKEN}}
+          token: ${{secrets.GIT_TOKEN}}
 
       - name: Gradle build
         run: |
           ./gradlew clean
           ./gradlew -Pprofile=dev :bootRun
-
-
-
