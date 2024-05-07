@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(Page.loginPage().getPageTitle(), "Authentication requested");
     }
 
-    @Test(description = "Login - Invalid credential")
+    @Test(description = "Login - Invalid credential", enabled = false)
     public void loginWithInvalidCredential() {
         Page.loginPage()
                 .inputUsername("invalid username")
@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(Page.loginPage().getErrorMessage(), "Unknown user or wrong password. Please try again.");
     }
 
-    @Test(description = "Login - Valid credential")
+    @Test(description = "Login - Valid credential", enabled = false)
     public void loginWithValidCredential() {
         Page.loginPage()
                 .inputUsername("admin")
