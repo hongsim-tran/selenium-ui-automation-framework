@@ -24,10 +24,10 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 
 2. **Run Tests:**
 
+
+    cd STAutomationFramework
+
 There are 2 profiles supported: local and production.
-
-    `cd STAutomationFramework`
-
 * Local environment:
   * Prerequisite: Have [Alfio](https://github.com/alfio-event/alf.io) installed locally. 
   * Run tests: `./mvnw clean install -Plocal-test`
