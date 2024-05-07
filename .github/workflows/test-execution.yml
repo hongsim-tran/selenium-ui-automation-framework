@@ -46,5 +46,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Execute test
+      - name: Execute tests
         run: ./mvnw clean install -Pprod-test
+
+      - name: Load test report history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: build/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{secrets.GIT_TOKEN}}
+          publish_branch: gh-pages
+          publish_dir: allure-history
