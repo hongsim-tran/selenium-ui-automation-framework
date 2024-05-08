@@ -14,10 +14,10 @@
             <package name="simtran.alfiotest.tests.prelogin"/>
         </packages>
     </test>
-    <test verbose="2" preserve-order="true" name="Firefox Execution">
-        <parameter name="browser" value="firefox"/>
-        <packages>
-            <package name="simtran.alfiotest.tests.prelogin"/>
-        </packages>
-    </test>
+<!--    <test verbose="2" preserve-order="true" name="Firefox Execution">-->
+<!--        <parameter name="browser" value="firefox"/>-->
+<!--        <packages>-->
+<!--            <package name="simtran.alfiotest.tests.prelogin"/>-->
+<!--        </packages>-->
+<!--    </test>-->
 </suite>
