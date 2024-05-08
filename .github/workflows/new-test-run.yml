@@ -1,4 +1,4 @@
-name: Build Alfio
+name: Test run new
 
 on:
   workflow_dispatch:
