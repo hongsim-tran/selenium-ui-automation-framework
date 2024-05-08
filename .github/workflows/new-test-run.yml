@@ -1,0 +1,54 @@
+name: Build Alfio
+
+on:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: 'Test Environment'
+        required: true
+        default: 'local'
+        type: choice
+        options:
+          - local
+          - production
+
+jobs:
+
+  local-test:
+    name: Build Alfio
+    runs-on: macos-latest
+
+    steps:
+      - name: Setup multiple JDKs
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: |
+            17
+            21
+
+      - name: Setup PostgreSQL database
+        id: postgres
+        uses: ikalnytskyi/action-setup-postgres@v6
+        with:
+          username: postgres
+          password: password
+          database: alfio
+          port: 5432
+
+      - name: Check out Alfio repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'hongsim-tran/alf.io'
+          token: ${{secrets.GIT_TOKEN}}
+
+      - name: Gradle build
+        run: |
+          ./gradlew clean
+          nohup ./gradlew -Pprofile=dev :bootRun >Output.log 2>&1 &
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute tests
+        run: ./mvnw clean install -Plocal-test
