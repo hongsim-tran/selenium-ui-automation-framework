@@ -1,4 +1,4 @@
-name: Test execution
+name: Test execution & Reporting
 on:
   workflow_dispatch:
     inputs:

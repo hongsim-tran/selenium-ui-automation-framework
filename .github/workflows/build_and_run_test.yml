@@ -1,4 +1,4 @@
-name: Test run new
+name: Build alfio locally and run tests
 
 on:
   workflow_dispatch:
