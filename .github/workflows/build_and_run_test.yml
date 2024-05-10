@@ -15,7 +15,7 @@ on:
 jobs:
 
   local-test:
-    name: Build Alfio
+    name: Build Alfio & Run test locally
     runs-on: macos-latest
 
     steps:
@@ -43,7 +43,7 @@ jobs:
       - name: Gradle build
         run: |
           ./gradlew clean
-          nohup ./gradlew -Pprofile=dev :bootRun >Output.log 2>&1 &
+          ./gradlew -Pprofile=dev :bootRun & 
           curl http://localhost:8080/admin
 
       - name: Setup JDKs 21
