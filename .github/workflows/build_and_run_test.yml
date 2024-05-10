@@ -44,7 +44,7 @@ jobs:
         run: |
           ./gradlew clean
           ./gradlew -Pprofile=dev :bootRun & 
-          sleep 300 &&
+          sleep 180 &&
           curl http://localhost:8080/admin
 
       - name: Setup JDKs 21
