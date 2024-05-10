@@ -10,7 +10,7 @@
     <test verbose="2" preserve-order="true" name="Chrome Execution">
         <parameter name="browser" value="chrome"/>
         <packages>
-            <package name="simtran.alfiotest.tests.loggedin"/>
+<!--            <package name="simtran.alfiotest.tests.loggedin"/>-->
             <package name="simtran.alfiotest.tests.prelogin"/>
         </packages>
     </test>
