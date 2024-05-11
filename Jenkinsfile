@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Run local test') {
             steps {
-                bat './mvnw clean install -Plocal-test'
+                sh './mvnw clean install -Plocal-test'
             }
         }
     }
