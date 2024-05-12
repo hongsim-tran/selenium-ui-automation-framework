@@ -13,7 +13,7 @@ import static simtran.core.config.ConfigManager.config;
 
 public class OrganizationsTest extends PreconditionBase {
 
-    @Test(description = "Create new organization - Valid data in all fields")
+    @Test(description = "Create new organization - Valid data in all fields", groups = {"local"})
     public void createOrganizationWithValidData() {
         deleteAllOrganizationsFromDB();
 
@@ -32,7 +32,7 @@ public class OrganizationsTest extends PreconditionBase {
         softAssert.assertAll();
     }
 
-    @Test(description = "Edit an organization - Valid data in all fields")
+    @Test(description = "Edit an organization - Valid data in all fields", groups = {"local"})
     public void editOrganizationWithValidData() {
         deleteAllOrganizationsFromDB();
 

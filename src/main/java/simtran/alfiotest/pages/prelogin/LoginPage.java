@@ -42,11 +42,6 @@ public class LoginPage extends BasePage {
 
     @Step("Check the captcha checkbox if it's available")
     public LoginPage clickCaptchaCheckbox() {
-//        if (targetConfig().target().equals("prod")) {
-//            switchToIframe(captchaFrame);
-//            click(captchaCheckbox);
-//            switchToDefaultWindow();
-//        }
         if (isVisible(captchaFrame)) {
             switchToIframe(captchaFrame);
             click(captchaCheckbox);

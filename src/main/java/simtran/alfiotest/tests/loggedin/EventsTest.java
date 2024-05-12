@@ -12,7 +12,7 @@ import simtran.alfiotest.pages.Page;
 public class EventsTest extends PreconditionBase {
     String timezone = "Asia/Ho_Chi_Minh";
 
-    @Test(description = "Create new event category - Valid data in all fields")
+    @Test(description = "Create new event category - Valid data in all fields", groups = {"local"})
     public void createEventCategoryWithValidData() {
 
         EventCategoryModel category = EventCategoryDataFactory.createValidEventCategoryData();
@@ -27,7 +27,7 @@ public class EventsTest extends PreconditionBase {
         softAssert.assertAll();
     }
 
-    @Test(description = "Create new event - Valid data in all fields", enabled = false)
+    @Test(description = "Create new event - Valid data in all fields", groups = {"local"}, enabled = false)
     public void createEventWithValidData() {
         OrganizationModel organization = OrganizationDataFactory.createValidOrganizationData();
         EventCategoryModel category = EventCategoryDataFactory.createValidEventCategoryData();
