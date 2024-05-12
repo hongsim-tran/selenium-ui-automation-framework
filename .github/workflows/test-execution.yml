@@ -1,4 +1,4 @@
-name: Test execution on local and production
+name: Test execution
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ on:
 jobs:
 
   local-test:
-    name: Build Alfio & Execute tests locally
+    name: Local test execution
     if: ${{inputs.local-test}}
     runs-on: macos-latest
 
@@ -67,7 +67,7 @@ jobs:
           
 
   production-test:
-    name: Execute tests on production
+    name: Production test execution
     if: ${{inputs.prod-test}}
     runs-on: ubuntu-latest
 
