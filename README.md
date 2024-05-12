@@ -56,6 +56,8 @@ There are 2 profiles supported: local and production.
 * Data faker: for generating test data
 * Lombok: to simplify test data creation for the model package 
 * Postgresql: as a JDBC driver to get connection to PostgresSQL database
+* Github Actions: CI/ CD tool
+* Jenkins: CI/ CD tool
 
 
 
@@ -127,4 +129,3 @@ ST Automation Framework
             │   └── prod.xml
             └── test-data
 ````
-
