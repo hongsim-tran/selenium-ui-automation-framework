@@ -1,22 +1,24 @@
-name: Build alfio locally and run tests
+name: Test execution on local and production
 
 on:
   workflow_dispatch:
     inputs:
-      build:
-        description: 'Test Environment'
+      local-test:
+        description: 'Local execution'
         required: true
-        default: 'production'
-        type: choice
-        options:
-          - local
-          - production
+        default: false
+        type: boolean
+      prod-test:
+        description: 'Production execution'
+        required: true
+        default: true
+        type: boolean
 
 jobs:
 
   local-test:
     name: Build Alfio & Execute tests locally
-    if: ${{inputs.build.options}} == 'production'
+    if: ${{inputs.local-test}}
     runs-on: macos-latest
 
     steps:
@@ -66,7 +68,7 @@ jobs:
 
   production-test:
     name: Execute tests on production
-    if: ${{inputs.build.options}} == 'production'
+    if: ${{inputs.prod-test}}
     runs-on: macos-latest
 
     steps:
@@ -81,3 +83,28 @@ jobs:
 
       - name: Execute tests
         run: ./mvnw clean install -Pprod-test
+
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          token: ${{secrets.GIT_TOKEN}}
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: target/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{secrets.GIT_TOKEN}}
+          publish_branch: gh-pages
+          publish_dir: allure-history
