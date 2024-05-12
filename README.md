@@ -4,7 +4,10 @@
 
 This Java framework automates web UI testing using Selenium WebDriver, managed by Maven and executed through TestNG
 
-[![Test run](https://github.com/alfio-event/alf.io/workflows/build/badge.svg)](https://github.com/hongsim-tran/STAutomationFramework/actions)
+![Static Badge](https://img.shields.io/badge/Java-green?label=language)
+![Static Badge](https://img.shields.io/badge/Maven-blue?style=flat)
+![Static Badge](https://img.shields.io/badge/Selenium-purple?style=flat)
+
 
 
 ### **Prerequisites**
