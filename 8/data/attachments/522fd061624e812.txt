@@ -1,0 +1,1 @@
+io.qameta.allure.model.StatusDetails@dccbeb21
