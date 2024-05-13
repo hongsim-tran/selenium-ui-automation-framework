@@ -30,6 +30,11 @@ Example of running tests on productioin environment
 
 https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/27f48712-12c0-4ab1-9396-ef2c54ee89c9
 
+Example of running tests from Github Actions
+
+
+https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/c01ac611-4fd7-4af8-a9e9-1a461964eea6
+
 
 
 ### **Prerequisites**
