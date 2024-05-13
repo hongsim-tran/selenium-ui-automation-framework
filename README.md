@@ -2,7 +2,17 @@
 
 ### **Description**
 
-This Java framework automates web UI testing using Selenium WebDriver, managed by Maven and executed through TestNG
+This Java framework automates web UI testing using Selenium WebDriver, managed by Maven and executed through TestNG. Here are some main features of the framework:
+
+* Runs tests on multiple environments (local, QA, production, etc.)
+* Runs tests in single-threaded or parallel mode
+* Supports cross-browser testing
+* Enables data-driven testing with Excel/JSON reader and data providers
+* Generates test data automatically using datafaker and model/data factory classes
+* Provides keywords for interacting with web UI elements
+* Connects to and queries databases
+* Generates test reports using Allure reports
+* Supports CI/CD integration with GitHub Actions and Jenkins
 
 ![Static Badge](https://img.shields.io/badge/Java-green)
 ![Static Badge](https://img.shields.io/badge/Maven-blue?style=flat)
@@ -10,6 +20,13 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hongsim-tran/STAutomationFramework/test-execution.yml)
 ![Static Badge](https://img.shields.io/badge/Test%20report%20-%20orange?style=flat&link=https%3A%2F%2Fgithub.com%2Fhongsim-tran%2FSTAutomationFramework%2Fdeployments%2Fgithub-pages)
+
+Example of running tests from local machine
+
+
+https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/89e7790a-6878-4263-ab30-5f101f00c0de
+
+
 
 ### **Prerequisites**
 
