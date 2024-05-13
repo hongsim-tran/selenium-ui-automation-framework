@@ -1,1 +1,1 @@
-{"total":1,"items":[{"uid":"62ae926102795dbb873e38cd82e33da1","name":"Alfio End to End Test","statistic":{"failed":0,"broken":4,"skipped":4,"passed":0,"unknown":0,"total":8}}]}
+{"total":1,"items":[{"uid":"62ae926102795dbb873e38cd82e33da1","name":"Alfio End to End Test","statistic":{"failed":0,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":4}}]}
