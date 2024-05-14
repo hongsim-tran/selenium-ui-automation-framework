@@ -2,7 +2,39 @@
 
 ### **Description**
 
-This Java framework automates web UI testing using Selenium WebDriver, managed by Maven and executed through TestNG
+This Java framework automates web UI testing using Selenium WebDriver, managed by Maven and executed through TestNG. Here are some main features of the framework:
+
+* Runs tests on multiple environments (local, QA, production, etc.)
+* Runs tests in single-threaded or parallel mode
+* Supports cross-browser testing
+* Enables data-driven testing with Excel/JSON reader and data providers
+* Generates test data automatically using datafaker and model/data factory classes
+* Provides keywords for interacting with web UI elements
+* Connects to and queries databases
+* Generates test reports using Allure reports
+* Supports CI/CD integration with GitHub Actions and Jenkins
+
+![Static Badge](https://img.shields.io/badge/Java-green)
+![Static Badge](https://img.shields.io/badge/Maven-blue?style=flat)
+![Static Badge](https://img.shields.io/badge/Selenium-purple?style=flat)
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hongsim-tran/STAutomationFramework/test-execution.yml)
+![Static Badge](https://img.shields.io/badge/Test%20report%20-%20orange?style=flat&link=https%3A%2F%2Fgithub.com%2Fhongsim-tran%2FSTAutomationFramework%2Fdeployments%2Fgithub-pages)
+
+Example of running tests on local environemnt
+
+https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/03966f5a-9245-429d-aaf6-d45d000a50b9
+
+
+Example of running tests on productioin environment
+
+https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/27f48712-12c0-4ab1-9396-ef2c54ee89c9
+
+Example of running tests from Github Actions
+
+
+https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/c01ac611-4fd7-4af8-a9e9-1a461964eea6
+
 
 
 ### **Prerequisites**
@@ -50,6 +82,8 @@ There are 2 profiles supported: local and production.
 * Data faker: for generating test data
 * Lombok: to simplify test data creation for the model package 
 * Postgresql: as a JDBC driver to get connection to PostgresSQL database
+* Github Actions: CI/ CD tool
+* Jenkins: CI/ CD tool
 
 
 
@@ -121,4 +155,3 @@ ST Automation Framework
             │   └── prod.xml
             └── test-data
 ````
-
