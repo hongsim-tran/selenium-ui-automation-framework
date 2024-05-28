@@ -1,4 +1,4 @@
-# **ST Automation Framework**
+# **Web Automation Framework**
 
 ### **Description**
 
