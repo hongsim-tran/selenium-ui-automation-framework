@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Alfio End to End Test" verbose="0" parallel="tests" thread-count="2">
-    <groups>
-        <run>
-            <include name="local"/>
-        </run>
-    </groups>
+<suite name="Evershop End to End Test" verbose="0" parallel="tests" thread-count="2">
+    <!--    <groups>-->
+    <!--        <run>-->
+    <!--            <include name="local"/>-->
+    <!--        </run>-->
+    <!--    </groups>-->
 
     <listeners>
         <listener class-name="simtran.core.retry.AnnotationTransformer"/>
     </listeners>
-
     <parameter name="target" value="local"/>
 
     <test name="Chrome Execution">
         <parameter name="browser" value="chrome"/>
-        <packages>
-            <package name="simtran.alfiotest.tests.loggedin"/>
-            <package name="simtran.alfiotest.tests.prelogin"/>
-        </packages>
+        <classes>
+            <class name="simtran.evershop.tests.store.ProductDetailsTests"/>
+            <class name="simtran.evershop.tests.store.CategoryTests"/>
+            <class name="simtran.evershop.tests.store.ShoppingCartTests"/>
+            <class name="simtran.evershop.tests.store.LoginTests"/>
+        </classes>
     </test>
+    
     <test name="Firefox Execution">
         <parameter name="browser" value="firefox"/>
-        <packages>
-            <package name="simtran.alfiotest.tests.prelogin"/>
-        </packages>
+        <classes>
+            <class name="simtran.evershop.tests.store.ProductDetailsTests"/>
+            <class name="simtran.evershop.tests.store.CategoryTests"/>
+            <class name="simtran.evershop.tests.store.ShoppingCartTests"/>
+        </classes>
     </test>
 </suite>

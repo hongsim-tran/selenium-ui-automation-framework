@@ -155,3 +155,44 @@ ST Automation Framework
             │   └── prod.xml
             └── test-data
 ````
+
+**Naming convention for Web UI elements**
+```
++----------+----------------------------+--------+-----------------+
+| Category |      UI/Control type       | Prefix |     Example     |
++----------+----------------------------+--------+-----------------+
+| Basic    | Button                     | btn    | btnExit         |
+| Basic    | Check box                  | chk    | chkReadOnly     |
+| Basic    | Combo box                  | cbo    | cboEnglish      |
+| Basic    | Common dialog              | dlg    | dlgFileOpen     |
+| Basic    | Date picker                | dtp    | dtpPublished    |
+| Basic    | Dropdown List / Select tag | ddl    | ddlCountry      |
+| Basic    | Form                       | frm    | frmEntry        |
+| Basic    | Frame                      | fra    | fraLanguage     |
+| Basic    | Image                      | img    | imgIcon         |
+| Basic    | Text                       | txt    | txtDescription  |
+| Basic    | Links/Anchor Tags          | lnk    | lnkForgotPwd    |
+| Basic    | List box                   | lst    | lstPolicyCodes  |
+| Basic    | Menu                       | mnu    | mnuFileOpen     |
+| Basic    | Radio button / group       | rdo    | rdoGender       |
+| Basic    | RichTextBox                | rtf    | rtfReport       |
+| Basic    | Table                      | tbl    | tblCustomer     |
+| Basic    | TabStrip                   | tab    | tabOptions      |
+| Basic    | Text area                  | txa    | txaDescription  |
+| Basic    | Text box                   | txb    | txbLastName     |
+| Complex  | Chevron                    | chv    | chvProtocol     |
+| Complex  | Data grid                  | dgd    | dgdTitles       |
+| Complex  | Data list                  | dbl    | dblPublisher    |
+| Complex  | Directory list box         | dir    | dirSource       |
+| Complex  | Drive list box             | drv    | drvTarget       |
+| Complex  | File list box              | fil    | filSource       |
+| Complex  | Panel/Fieldset             | pnl    | pnlGroup        |
+| Complex  | ProgressBar                | prg    | prgLoadFile     |
+| Complex  | Slider                     | sld    | sldScale        |
+| Complex  | Spinner                    | spn    | spnPages        |
+| Complex  | StatusBar                  | sta    | staDateTime     |
+| Complex  | Timer                      | tmr    | tmrAlarm        |
+| Complex  | Toolbar                    | tlb    | tlbActions      |
+| Complex  | TreeView                   | tre    | treOrganization |
++----------+----------------------------+--------+-----------------+
+```

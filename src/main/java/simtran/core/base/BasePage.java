@@ -3,10 +3,11 @@ package simtran.core.base;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import simtran.alfiotest.pages.Page;
 import simtran.core.utils.MyLogger;
 import simtran.core.wdm.DriverManager;
+import simtran.evershop.pages.Page;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -16,6 +17,15 @@ import java.util.List;
  * @author simtran
  */
 public class BasePage extends Page {
+
+    protected void wait(int timeInSecond) {
+        try {
+            MyLogger.debug("Waiting for " + timeInSecond + " seconds");
+            Thread.sleep(Duration.ofSeconds(timeInSecond));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     protected <T> WebElement findElement(T element) {
         if (element.getClass().getName().contains("By")) {
@@ -32,13 +42,17 @@ public class BasePage extends Page {
 
     protected <T> WebElement findChildElement(T element, T parentElement) {
         if (element.getClass().getName().contains("By")) {
-            return findElement(parentElement).findElement((By) element);
+            if (parentElement.getClass().getName().contains("By"))
+                return findElement(parentElement).findElement((By) element);
+            else return ((WebElement) parentElement).findElement((By) element);
         } else return (WebElement) element;
     }
 
     protected <T> List<WebElement> findChildrenElements(T element, T parentElement) {
         if (element.getClass().getName().contains("By")) {
-            return findElement(parentElement).findElements((By) element);
+            if (parentElement.getClass().getName().contains("By"))
+                return findElement(parentElement).findElements((By) element);
+            else return ((WebElement) parentElement).findElements((By) element);
         } else return List.of((WebElement) element);
     }
 
@@ -106,6 +120,16 @@ public class BasePage extends Page {
         el.sendKeys(text);
     }
 
+    protected <T> void enterKey(T element, Keys key) {
+        WebElement el;
+        MyLogger.debug(String.format("Press the key: %s", key));
+        if (element.getClass().getName().contains("By")) {
+            el = DriverManager.getWait().until(ExpectedConditions.visibilityOfElementLocated((By) element));
+        } else el = DriverManager.getWait().until(ExpectedConditions.visibilityOf((WebElement) element));
+
+        el.sendKeys(key);
+    }
+
     protected <T> void selectDropdown(T element, String dropdownOption) {
         WebElement el;
         if (element.getClass().getName().contains("By")) {
@@ -126,6 +150,20 @@ public class BasePage extends Page {
         Select select = new Select(el);
         MyLogger.debug(String.format("Select the option: %s for the dropdown: %s ", dropdownOption, element));
         select.selectByIndex(dropdownOption);
+    }
+
+    protected void refresh() {
+        MyLogger.debug("Refresh the page...");
+        DriverManager.getDriver().navigate().refresh();
+    }
+
+    protected void openUrl(String url) {
+        MyLogger.debug("Open the url " + url);
+        DriverManager.getDriver().get(url);
+    }
+
+    protected String getUrl() {
+        return DriverManager.getDriver().getCurrentUrl();
     }
 
     protected <T> String getText(T element) {
