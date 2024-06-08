@@ -25,6 +25,12 @@ public interface Configuration extends Config {
     @Key("${env}.password")
     String password();
 
+    @Key("${env}.admin.username")
+    String adminUsername();
+
+    @Key("${env}.admin.password")
+    String adminPassword();
+
     @Key("${env}.database.url")
     String databaseUrl();
 
@@ -34,10 +40,13 @@ public interface Configuration extends Config {
     @Key("${env}.database.password")
     String databasePassword();
 
-    @Key("${env}.timeout")
-    int timeout();
+    @Key("${env}.long.timeout")
+    int longTimeout();
 
-    @Key("headless")
+    @Key("${env}.short.timeout")
+    int shortTimeout();
+
+    @Key("${env}.headless")
     Boolean headless();
 
     @Key("log.level")

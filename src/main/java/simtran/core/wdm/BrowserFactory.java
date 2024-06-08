@@ -25,21 +25,21 @@ public enum BrowserFactory {
      */
     CHROME {
         @Override
-        public ChromeOptions getOptions() {
+        public ChromeOptions getOptions(String target) {
             ChromeOptions options = new ChromeOptions();
 
             options.addArguments(BrowserArguments.START_MAXIMIZED);
             options.addArguments(BrowserArguments.DISABLE_NOTIFICATIONS);
             options.addArguments(BrowserArguments.DISABLE_POPUP_BLOCKING);
 
-            if (config().headless())
+            if (config(target).headless())
                 options.addArguments(BrowserArguments.CHROME_HEADLESS);
             return options;
         }
 
         @Override
-        public WebDriver initDriver() {
-            return new ChromeDriver(getOptions());
+        public WebDriver initDriver(String target) {
+            return new ChromeDriver(getOptions(target));
         }
     },
 
@@ -48,17 +48,17 @@ public enum BrowserFactory {
      */
     FIREFOX {
         @Override
-        public FirefoxOptions getOptions() {
+        public FirefoxOptions getOptions(String target) {
             FirefoxOptions options = new FirefoxOptions();
 
-            if (config().headless())
+            if (config(target).headless())
                 options.addArguments(BrowserArguments.HEADLESS);
             return options;
         }
 
         @Override
-        public WebDriver initDriver() {
-            FirefoxDriver driver = new FirefoxDriver(getOptions());
+        public WebDriver initDriver(String target) {
+            FirefoxDriver driver = new FirefoxDriver(getOptions(target));
             driver.manage().window().maximize();
             return driver;
         }
@@ -69,19 +69,19 @@ public enum BrowserFactory {
      */
     EDGE {
         @Override
-        public EdgeOptions getOptions() {
+        public EdgeOptions getOptions(String target) {
             EdgeOptions options = new EdgeOptions();
 
             options.addArguments(BrowserArguments.START_MAXIMIZED);
 
-            if (config().headless())
+            if (config(target).headless())
                 options.addArguments(BrowserArguments.HEADLESS);
             return options;
         }
 
         @Override
-        public WebDriver initDriver() {
-            return new EdgeDriver(getOptions());
+        public WebDriver initDriver(String target) {
+            return new EdgeDriver(getOptions(target));
         }
     },
 
@@ -90,7 +90,7 @@ public enum BrowserFactory {
      */
     SAFARI {
         @Override
-        public SafariOptions getOptions() {
+        public SafariOptions getOptions(String target) {
             SafariOptions options = new SafariOptions();
             options.setAutomaticInspection(false);
 
@@ -98,11 +98,11 @@ public enum BrowserFactory {
         }
 
         @Override
-        public WebDriver initDriver() {
-            if (config().headless())
+        public WebDriver initDriver(String target) {
+            if (config(target).headless())
                 throw new IllegalStateException("Headless not supported for Safari!");
 
-            return new SafariDriver(getOptions());
+            return new SafariDriver(getOptions(target));
         }
     };
 
@@ -111,12 +111,12 @@ public enum BrowserFactory {
      *
      * @return An instance of the appropriate `AbstractDriverOptions` subclass configured for the specific browser.
      */
-    public abstract AbstractDriverOptions<?> getOptions();
+    public abstract AbstractDriverOptions<?> getOptions(String target);
 
     /**
      * Method to initialize a WebDriver instance with the browser-specific options.
      *
      * @return A new WebDriver instance configured for the chosen browser.
      */
-    public abstract WebDriver initDriver();
+    public abstract WebDriver initDriver(String target);
 }

@@ -14,7 +14,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <selenium.version>4.20.0</selenium.version>
+        <selenium.version>4.21.0</selenium.version>
         <testng.version>7.10.1</testng.version>
         <owner.version>1.0.12</owner.version>
         <allure.version>2.27.0</allure.version>

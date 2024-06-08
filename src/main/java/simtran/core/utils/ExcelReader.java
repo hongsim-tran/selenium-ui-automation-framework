@@ -19,14 +19,12 @@ public class ExcelReader {
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private XSSFRow row = null;
-    private XSSFCell cell = null;
-    private final String testDataFilePath = "/test-data/data.xlsx";
 
     /**
      * Constructs a new ExcelReader instance by loading the Excel file located at the specified resource path.
      */
-    public ExcelReader() {
-        InputStream ins = getClass().getResourceAsStream(testDataFilePath);
+    public ExcelReader(String filePath) {
+        InputStream ins = getClass().getResourceAsStream(filePath);
         try {
 
             workbook = new XSSFWorkbook(ins);
@@ -48,7 +46,7 @@ public class ExcelReader {
     public Object getCellData(String sheetName, int rowNum, int colNum) {
         sheet = workbook.getSheet(sheetName);
         row = sheet.getRow(rowNum);
-        cell = row.getCell(colNum);
+        XSSFCell cell = row.getCell(colNum);
 
         DataFormatter formatter = new DataFormatter();
         return formatter.formatCellValue(cell);

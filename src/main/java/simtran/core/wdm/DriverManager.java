@@ -38,7 +38,7 @@ public class DriverManager {
         if (getDriver() != null)
             quit();
         DriverManager.driver.set(driver);
-        wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(config(target).timeout())));
+        wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(config(target).longTimeout())));
     }
 
     /**
@@ -79,7 +79,7 @@ public class DriverManager {
      * @param browser The name of the browser to be used (e.g., "CHROME", "FIREFOX").
      * @return A new WebDriver instance for the specified browser.
      */
-    public WebDriver createDriverInstance(String browser) {
-        return BrowserFactory.valueOf(browser.toUpperCase()).initDriver();
+    public WebDriver createDriverInstance(String target, String browser) {
+        return BrowserFactory.valueOf(browser.toUpperCase()).initDriver(target);
     }
 }
