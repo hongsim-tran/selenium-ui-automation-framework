@@ -45,7 +45,7 @@ https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/c01ac611-4
 
 * Allure Report 2.28.0
 
-* For my sample testing project, I'm using [Alfio](https://github.com/alfio-event/alf.io)
+* For my sample testing project, I'm using [Evershop](https://github.com/evershopcommerce/evershop?tab=readme-ov-file)
 
 ### **Installation**
 
@@ -61,7 +61,7 @@ https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/c01ac611-4
 
 There are 2 profiles supported: local and production.
 * Local environment:
-  * Prerequisite: Have [Alfio](https://github.com/alfio-event/alf.io) installed locally. 
+  * Prerequisite: Have [Evershop](https://evershop.io/docs/development/getting-started/installation-guide) installed locally. 
   * Run tests: `./mvnw clean install -Plocal-test`
   
   
