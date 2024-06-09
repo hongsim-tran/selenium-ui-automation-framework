@@ -91,7 +91,8 @@ There are 2 profiles supported: local and production.
 
 
 ````
-ST Automation Framework
+Web Automation Framework
+├── Jenkinsfile
 ├── pom.xml
 └── src
     └── main
@@ -104,13 +105,21 @@ ST Automation Framework
         │       │   ├── config
         │       │   │   ├── ConfigManager.java
         │       │   │   └── Configuration.java
+        │       │   ├── constants
+        │       │   │   └── Framework.java
         │       │   ├── enums
+        │       │   │   ├── IframeIdentifier.java
+        │       │   │   └── ...
         │       │   ├── exceptions
+        │       │   │   └── ProvidedClassNotAnEnum.java
         │       │   ├── report
         │       │   │   ├── AllureManager.java
         │       │   │   └── MyListener.java
         │       │   ├── retry
+        │       │   │   ├── AnnotationTransformer.java
+        │       │   │   └── RetryAnalyzer.java
         │       │   ├── utils
+        │       │   │   ├── CurrencyUtils.java
         │       │   │   ├── DBConnection.java
         │       │   │   ├── DateTimeUtils.java
         │       │   │   ├── ExcelReader.java
@@ -120,33 +129,22 @@ ST Automation Framework
         │       │       ├── BrowserArguments.java
         │       │       ├── BrowserFactory.java
         │       │       └── DriverManager.java
-        │       └── alfiotest
+        │       └── evershop
         │           ├── datafactory
-        │           │   ├── EventCategoryDataFactory.java
-        │           │   ├── ...
+        │           │   └── CouponDataFactory.java
         │           ├── dbqueries
         │           │   └── Queries.java
         │           ├── models
-        │           │   ├── EventCategoryModel.java
-        │           │   ├── ...
+        │           │   └── NewCouponModel.java
         │           ├── pages
         │           │   ├── Page.java
-        │           │   ├── loggedin
-        │           │   │   ├── common
-        │           │   │   │   ├── Navigation.java
-        │           │   │   │   └── ...
-        │           │   │   ├── events
-        │           │   │   │   ├── EventsPage.java
-        │           │   │   │   ├── ...
-        │           │   │   ├── ...
-        │           │   └── ...
+        │           │   └── store
+        │           │       ├── Homepage.java
+        │           │       └── ...
         │           └── tests
-        │               ├── loggedin
-        │               │   ├── EventsTest.java
-        │               │   ├── OrganizationsTest.java
-        │               │   └── PreconditionBase.java
-        │               └── prelogin
-        │                   └── LoginTest.java
+        │               └── store
+        │                   ├── CategoryTests.java
+        │                   └── ...
         └── resources
             ├── config
             │   └── config.properties
@@ -154,6 +152,7 @@ ST Automation Framework
             │   ├── local.xml
             │   └── prod.xml
             └── test-data
+
 ````
 
 **Naming convention for Web UI elements**
