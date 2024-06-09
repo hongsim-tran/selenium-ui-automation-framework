@@ -61,7 +61,7 @@ https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/c01ac611-4
 
 There are 2 profiles supported: local and production.
 * Local environment:
-  * Prerequisite: Have [Evershop](https://evershop.io/docs/development/getting-started/installation-guide) installed locally. 
+  * Prerequisite: Have [Evershop](https://evershop.io/docs/development/getting-started/installation-guide) installed and started locally. 
   * Run tests: `./mvnw clean install -Plocal-test`
   
   
