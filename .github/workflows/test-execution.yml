@@ -15,40 +15,39 @@ on:
         type: boolean
 
 jobs:
-
   local-test:
     name: Local test execution
     if: ${{inputs.local-test}}
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Setup JDKs 17
-        uses: actions/setup-java@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          distribution: 'oracle'
-          java-version: 17
+          node-version: 22.1.0
 
       - name: Setup PostgreSQL database
         id: postgres
         uses: ikalnytskyi/action-setup-postgres@v6
         with:
-          username: postgres
-          password: password
-          database: alfio
+          username: simtran
+          database: evershop
           port: 5432
 
-      - name: Check out Alfio repository
-        uses: actions/checkout@v4
-        with:
-          repository: 'hongsim-tran/alf.io'
-          token: ${{secrets.GIT_TOKEN}}
-
-      - name: Build Alfio
+      - name: Install Evershop
         run: |
-          ./gradlew clean
-          ./gradlew -Pprofile=dev :bootRun & 
+          mkdir evershop
+          cd evershop
+          npm init
+          npm install @evershop/evershop
+          npm run setup
+
+      - name: Build and start Evershop
+        run: |
+          npm run build
+          npm run start & 
           sleep 180 &&
-          curl http://localhost:8080/admin
+          curl http://localhost:3000
 
       - name: Setup JDKs 21
         uses: actions/setup-java@v4
@@ -61,10 +60,7 @@ jobs:
 
       - name: Execute tests
         run: |
-          curl http://localhost:8080/admin
           ./mvnw clean install -Plocal-test
-          
-          
 
   production-test:
     name: Production test execution
