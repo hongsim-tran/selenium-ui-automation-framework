@@ -92,6 +92,9 @@ There are 2 profiles supported: local and production.
 
 ````
 Web Automation Framework
+├── .github
+│   └── workflows
+│       └── test-execution.yml
 ├── Jenkinsfile
 ├── pom.xml
 └── src
