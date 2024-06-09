@@ -26,7 +26,7 @@ Example of running tests on local environemnt
 https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/03966f5a-9245-429d-aaf6-d45d000a50b9
 
 
-Example of running tests on productioin environment
+Example of running tests on production environment
 
 https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/27f48712-12c0-4ab1-9396-ef2c54ee89c9
 
