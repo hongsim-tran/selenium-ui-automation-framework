@@ -23,17 +23,20 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 
 Example of running tests on local environemnt
 
-https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/03966f5a-9245-429d-aaf6-d45d000a50b9
+https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/9383b9fd-c239-4559-9515-dc0936636715
 
 
 Example of running tests on production environment
 
-https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/27f48712-12c0-4ab1-9396-ef2c54ee89c9
+
+https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/c5cea01b-68bb-4c44-aa30-c9ef0cacb524
+
 
 Example of running tests from Github Actions
 
 
-https://github.com/hongsim-tran/STAutomationFramework/assets/29735755/c01ac611-4fd7-4af8-a9e9-1a461964eea6
+https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/05839733-2660-4b91-b6b4-697662704f63
+
 
 
 
