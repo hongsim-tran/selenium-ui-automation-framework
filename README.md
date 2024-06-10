@@ -60,23 +60,32 @@ https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/05839733-
 
 1. **Clone the Project:**
 
-    `git clone https://github.com/hongsim-tran/WebAutomationFramework.git`
+  ````
+  git clone https://github.com/hongsim-tran/WebAutomationFramework.git
+  ````
 
 
 2. **Run Tests:**
 
+  ```
+  cd WebAutomationFramework
+  ```
 
-    `cd STAutomationFramework`
 
 There are 2 profiles supported: local and production.
 * Local environment:
   * Prerequisite: Have [Evershop](https://evershop.io/docs/development/getting-started/installation-guide) installed and started locally. 
-  * Run tests: `./mvnw clean install -Plocal-test`
+  * Run tests: 
+  ```
+  ./mvnw clean install -Plocal-test`
+  ```
   
   
 * Production environment:
-  * Run tests: `./mvnw clean install -Pprod-test`
-
+  * Run tests: 
+  ````
+  ./mvnw clean install -Pprod-test
+  ````
 
 
 ### **Tech Stacks**
