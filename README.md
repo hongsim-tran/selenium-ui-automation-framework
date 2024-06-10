@@ -176,7 +176,7 @@ Web Automation Framework
 
 ````
 
-Source code breakdown: there are 2 main parts: core and evershop (the application under test)
+**Source code breakdown**: there are 2 main parts: core and evershop (the application under test)
 * `core`: This package contains core functionalities of the framework
   * `wdm`: simplifies the process of downloading and managing WebDriver binaries for various browsers. It offers the following classes to interact with WebDriver management:
     * ``BrowserFactory``: provides methods to create new WebDriver instances for different browsers.
