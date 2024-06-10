@@ -21,21 +21,27 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hongsim-tran/STAutomationFramework/test-execution.yml)
 ![Static Badge](https://img.shields.io/badge/Test%20report%20-%20orange?style=flat&link=https%3A%2F%2Fgithub.com%2Fhongsim-tran%2FSTAutomationFramework%2Fdeployments%2Fgithub-pages)
 
-Example of running tests on local environemnt
+**Example of running tests on local environemnt**
+
 
 https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/9383b9fd-c239-4559-9515-dc0936636715
 
 
-Example of running tests on production environment
+
+**Example of running tests on production environment**
+
 
 
 https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/c5cea01b-68bb-4c44-aa30-c9ef0cacb524
 
 
-Example of running tests from Github Actions
+
+**Example of running tests from Github Actions**
+
 
 
 https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/05839733-2660-4b91-b6b4-697662704f63
+
 
 
 
