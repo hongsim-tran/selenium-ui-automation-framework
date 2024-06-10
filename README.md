@@ -167,6 +167,100 @@ Web Automation Framework
 
 ````
 
+Source code breakdown: there are 2 main parts: core and evershop (the application under test)
+* `core`: This package contains core functionalities of the framework
+  * `wdm`: simplifies the process of downloading and managing WebDriver binaries for various browsers. It offers the following classes to interact with WebDriver management:
+    * ``BrowserFactory``: provides methods to create new WebDriver instances for different browsers.
+    ```
+    CHROME {
+        @Override
+        public ChromeOptions getOptions(String target) {
+            ChromeOptions options = new ChromeOptions();
+
+            options.addArguments(BrowserArguments.START_MAXIMIZED);
+            options.addArguments(BrowserArguments.DISABLE_NOTIFICATIONS);
+            options.addArguments(BrowserArguments.DISABLE_POPUP_BLOCKING);
+
+            if (config(target).headless())
+                options.addArguments(BrowserArguments.CHROME_HEADLESS);
+            return options;
+        }
+
+        @Override
+        public WebDriver initDriver(String target) {
+            return new ChromeDriver(getOptions(target));
+        }
+    }
+    ```
+    
+    * `DriverManager`: handles the downloading and management of WebDriver binaries. 
+    * `BrowserArguments`: allows you to set arguments for the browser when creating a WebDriver instance.
+  * `config`: provides functionalities for managing configuration data within the web automation framework. It utilizes the Owner library to simplify reading configuration properties from a properties file
+  * `base`: provides foundational classes for tests and page objects. The `BasePage` class provides the keywords to perform actions on web UI elements by passing the UI locator variable of type `By` or UI element variable of type `WebElement`. For example, a keyword to select a dropdown based on dropdown's locator or element and the dropdown option value
+    ```
+    protected <T> void selectDropdown(T element, String dropdownOption) {
+        WebElement el;
+        if (element.getClass().getName().contains("By")) {
+            el = DriverManager.getWait().until(ExpectedConditions.visibilityOfElementLocated((By) element));
+        } else el = DriverManager.getWait().until(ExpectedConditions.visibilityOf((WebElement) element));
+
+        Select select = new Select(el);
+        MyLogger.debug(String.format("Select the option: %s for the dropdown: %s ", dropdownOption, element));
+        select.selectByVisibleText(dropdownOption);
+    }
+    ```
+  * `retry`: implements test retries on failures
+  * `report`: handles test reporting using TestNG and Allure report
+    * `utils`: provides utility functions for the framework such as currency handling, Database connection utilities, date time handling, logging, excel file reading, etc.
+* `evershop`: contains application-specific code to test the "evershop" application
+  * `pages`: implements the Page Object Model (POM) design pattern for the web automation framework. It provides a structured way to interact with web elements on different pages of the test application
+    * `Page`: defines a foundation for all page object classes in the project. `getInstance` method in `Page` class provides a generic way to instantiate specific page object classes
+    ```
+    private static <TPage extends BasePage> TPage getInstance(Class<TPage> pageClass) {
+        try {
+            return pageClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            MyLogger.error(e.getMessage());
+        }
+        return null;
+    }
+    
+    public static Homepage homepage() {
+        return getInstance(Homepage.class);
+    }
+    ```  
+    * Page Object classes encapsulate: 
+      * Element locators: these classes define how to locate specific web elements on the page (e.g., buttons, text fields). 
+      * Interaction methods: These methods provide functionalities to interact with the located web elements. This may include actions like clicking buttons, entering text, or retrieving element text.
+    ```
+      public class Homepage extends Navigation {
+
+      //**************** Page's locators ****************
+      private final By txtHeader = By.cssSelector(".h1");
+      private final By btnCategoryList = By.xpath("//a[@class='button primary']");
+  
+      //**************** Page's attributes ****************
+      public String getHeader() {
+        return getText(txtHeader);
+      }
+    
+      //**************** Page's actions ****************
+      @Step
+      public CategoryPage clickCategoryButton(int index) {
+        click(findElements(btnCategoryList).get(index));
+        return Page.categoryPage();
+      }
+    }
+    ```
+  
+  * `tests`
+  * `models`
+  * `datafactory`
+  * `dbqueries`
+
+
+
+
 **Naming convention for Web UI elements**
 ```
 +----------+----------------------------+--------+-----------------+
