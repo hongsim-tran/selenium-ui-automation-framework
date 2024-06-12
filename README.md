@@ -220,7 +220,7 @@ Web Automation Framework
     ```
   * `retry`: implements test retries on failures
   * `report`: handles test reporting using TestNG and Allure report
-    * `utils`: provides utility functions for the framework such as currency handling, Database connection utilities, date time handling, logging, excel file reading, etc.
+  * `utils`: provides utility functions for the framework such as currency handling, Database connection utilities, date time handling, logging, excel file reading, etc.
   
 * `evershop`: contains application-specific code to test the "evershop" application
   * `models`: defines data models representing application entities. For example, NewCouponModel representing a new coupon
