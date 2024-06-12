@@ -221,7 +221,54 @@ Web Automation Framework
   * `retry`: implements test retries on failures
   * `report`: handles test reporting using TestNG and Allure report
     * `utils`: provides utility functions for the framework such as currency handling, Database connection utilities, date time handling, logging, excel file reading, etc.
+  
 * `evershop`: contains application-specific code to test the "evershop" application
+  * `models`: defines data models representing application entities. For example, NewCouponModel representing a new coupon
+    
+    ```
+    public class NewCouponModel {
+
+      String couponCode;
+      String description;
+      Double discountAmount;
+      String discountType;
+      int targetProduct;
+
+      public enum DiscountType{
+          FIXED_DISCOUNT_ENTIRE_ORDER("fixed_discount_to_entire_order"),
+          PERCENTAGE_DISCOUNT_ENTIRE_ORDER("percentage_discount_to_entire_order"),
+          FIXED_DISCOUNT_SPECIFIC_PRODUCTS("fixed_discount_to_specific_products"),
+          PERCENTAGE_DISCOUNT_SPECIFIC_PRODUCTS("percentage_discount_to_specific_products"),
+          BUY_X_GET_Y("buy_x_get_y")
+          ;
+
+          private final String type;
+
+          DiscountType(String type) {
+              this.type = type;
+          }
+
+          @Override
+          public String toString() {
+              return type;
+          }
+      }
+    }
+    ```
+
+  * `datafactory`: provides methods for creating test data objects from models using datafaker
+    ```
+    public static NewCouponModel generateValidCouponData(NewCouponModel.DiscountType type){
+        NewCouponModel newCoupon = new NewCouponModel();
+        newCoupon.setCouponCode(faker.text().text(8));
+        newCoupon.setDescription(faker.lorem().paragraph(5));
+        newCoupon.setDiscountAmount(faker.number().randomDouble(2, 1, 99));
+        newCoupon.setDiscountType(type.toString());
+        return newCoupon;
+    }
+    ```
+
+  * `dbqueries`: stores database queries used in tests
   * `pages`: implements the Page Object Model (POM) design pattern for the web automation framework. It provides a structured way to interact with web elements on different pages of the test application
     * `Page`: defines a foundation for all page object classes in the project. `getInstance` method in `Page` class provides a generic way to instantiate specific page object classes
     ```
@@ -238,9 +285,9 @@ Web Automation Framework
         return getInstance(Homepage.class);
     }
     ```  
-    * Page Object classes encapsulate: 
-      * Element locators: these classes define how to locate specific web elements on the page (e.g., buttons, text fields). 
-      * Interaction methods: These methods provide functionalities to interact with the located web elements. This may include actions like clicking buttons, entering text, or retrieving element text.
+  * Page Object classes encapsulate: 
+    * Element locators: these classes define how to locate specific web elements on the page (e.g., buttons, text fields). 
+    * Interaction methods: These methods provide functionalities to interact with the located web elements. This may include actions like clicking buttons, entering text, or retrieving element text.
     ```
       public class Homepage extends Navigation {
 
@@ -262,10 +309,7 @@ Web Automation Framework
     }
     ```
   
-  * `tests`
-  * `models`
-  * `datafactory`
-  * `dbqueries`
+  * `tests`: contains automated test cases for the evershop application
 
 
 
