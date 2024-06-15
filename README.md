@@ -285,29 +285,29 @@ Web Automation Framework
         return getInstance(Homepage.class);
     }
     ```  
-  * Page Object classes encapsulate: 
-    * Element locators: these classes define how to locate specific web elements on the page (e.g., buttons, text fields). 
-    * Interaction methods: These methods provide functionalities to interact with the located web elements. This may include actions like clicking buttons, entering text, or retrieving element text.
-    ```
-      public class Homepage extends Navigation {
+    * Page Object classes encapsulate: 
+      * Element locators: these classes define how to locate specific web elements on the page (e.g., buttons, text fields). 
+      * Interaction methods: These methods provide functionalities to interact with the located web elements. This may include actions like clicking buttons, entering text, or retrieving element text.
+      ```
+        public class Homepage extends Navigation {
 
-      //**************** Page's locators ****************
-      private final By txtHeader = By.cssSelector(".h1");
-      private final By btnCategoryList = By.xpath("//a[@class='button primary']");
+        //**************** Page's locators ****************
+        private final By txtHeader = By.cssSelector(".h1");
+        private final By btnCategoryList = By.xpath("//a[@class='button primary']");
   
-      //**************** Page's attributes ****************
-      public String getHeader() {
-        return getText(txtHeader);
-      }
+        //**************** Page's attributes ****************
+        public String getHeader() {
+          return getText(txtHeader);
+        }
     
-      //**************** Page's actions ****************
-      @Step
-      public CategoryPage clickCategoryButton(int index) {
-        click(findElements(btnCategoryList).get(index));
-        return Page.categoryPage();
+        //**************** Page's actions ****************
+        @Step
+        public CategoryPage clickCategoryButton(int index) {
+          click(findElements(btnCategoryList).get(index));
+          return Page.categoryPage();
+        }
       }
-    }
-    ```
+      ```
   
   * `tests`: contains automated test cases for the evershop application
 
