@@ -15,19 +15,19 @@
     <test name="Chrome Execution">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="simtran.evershop.tests.store.ProductDetailsTests"/>
-            <class name="simtran.evershop.tests.store.CategoryTests"/>
-            <class name="simtran.evershop.tests.store.ShoppingCartTests"/>
-            <class name="simtran.evershop.tests.store.LoginTests"/>
+            <class name="simtran.evershop.tests.testng.ProductDetailsTests"/>
+            <class name="simtran.evershop.tests.testng.CategoryTests"/>
+            <class name="simtran.evershop.tests.testng.ShoppingCartTests"/>
+            <class name="simtran.evershop.tests.testng.LoginTests"/>
         </classes>
     </test>
     
     <test name="Firefox Execution">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="simtran.evershop.tests.store.ProductDetailsTests"/>
-            <class name="simtran.evershop.tests.store.CategoryTests"/>
-            <class name="simtran.evershop.tests.store.ShoppingCartTests"/>
+            <class name="simtran.evershop.tests.testng.ProductDetailsTests"/>
+            <class name="simtran.evershop.tests.testng.CategoryTests"/>
+            <class name="simtran.evershop.tests.testng.ShoppingCartTests"/>
         </classes>
     </test>
 </suite>
