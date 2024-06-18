@@ -47,7 +47,8 @@ https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/05839733-
 
 **Cucumber test report**
 
-<img width="1799" alt="Screenshot 2024-06-18 at 22 10 03" src="https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/95e3c22f-42c1-4f3e-91ef-a503095b02bb">
+
+<img width="1799" alt="Screenshot 2024-06-18 at 23 04 55" src="https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/f896dccd-5fee-4d9c-876b-75eb052589fd">
 
 
 
