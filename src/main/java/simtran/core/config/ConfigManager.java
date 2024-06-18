@@ -14,14 +14,14 @@ public class ConfigManager {
     private ConfigManager() {
     }
 
-    public static Configuration config(String target) {
+    public static EnvironmentConfiguration envConfig(String target) {
         HashMap<String, String> map = new HashMap<>();
         map.put("env", target);
-        return ConfigFactory.create(Configuration.class, map);
+        return ConfigFactory.create(EnvironmentConfiguration.class, map);
     }
 
-    public static Configuration config() {
-        return ConfigFactory.create(Configuration.class);
+    public static GeneralConfiguration config() {
+        return ConfigFactory.create(GeneralConfiguration.class);
     }
 }
 

@@ -6,6 +6,7 @@ import simtran.core.wdm.DriverManager;
 import simtran.evershop.pages.store.*;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 public class Page {
 
@@ -20,8 +21,8 @@ public class Page {
 
     //**************** Store's pages ****************
     public static Homepage openStoreUrl(String target) {
-        MyLogger.debug("Open the store base page at " + config(target).baseUrl());
-        DriverManager.getDriver().get(config(target).baseUrl());
+        MyLogger.debug("Open the store base page at " + envConfig(target).baseUrl());
+        DriverManager.getDriver().get(envConfig(target).baseUrl());
         return Page.homepage();
     }
 

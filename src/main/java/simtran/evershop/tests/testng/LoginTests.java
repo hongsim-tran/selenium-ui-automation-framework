@@ -6,6 +6,7 @@ import simtran.core.base.BaseTest;
 import simtran.evershop.pages.Page;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 public class LoginTests extends BaseTest {
 
@@ -14,8 +15,8 @@ public class LoginTests extends BaseTest {
         Page
                 .openStoreUrl(target)
                 .clickProfileMenu()
-                .inputEmail(config(target).username())
-                .inputPassword(config(target).password())
+                .inputEmail(envConfig(target).username())
+                .inputPassword(envConfig(target).password())
                 .clickSignInButton();
         Assert.assertEquals(Page.homepage().getHeader(), "Discount 20% For All Orders Over $2000");
     }

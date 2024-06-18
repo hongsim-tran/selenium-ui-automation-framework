@@ -18,6 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 public class ShoppingCartStep extends StepSetup {
     List<ConcurrentHashMap<String, String>> addedProducts;
@@ -51,7 +52,7 @@ public class ShoppingCartStep extends StepSetup {
             if (Page.productDetailsPage().getNumberOfVariants() > 0){
                 for (int j = 0; j < Page.productDetailsPage().getNumberOfVariants(); j++){
                     Page.productDetailsPage().clickRandomVariantButton(j);
-                    wait(config(target).shortTimeout());
+                    wait(envConfig(target).shortTimeout());
                     product.put(String.format("variant-%s", j), Page.productDetailsPage().getSelectedVariantButton(j).toLowerCase());
                 }
             }
@@ -60,7 +61,7 @@ public class ShoppingCartStep extends StepSetup {
             boolean isAdded = false;
             while (true){
                 Page.productDetailsPage().inputQty(String.valueOf(qty)).clickAddToCartButton();
-                wait(config(target).shortTimeout());
+                wait(envConfig(target).shortTimeout());
                 if (Page.productDetailsPage().isQtyErrorMessageVisible()){
                     if (qty == 1)
                         break;
@@ -121,7 +122,7 @@ public class ShoppingCartStep extends StepSetup {
 
         addedProducts.removeIf(product -> product.equals(firstProduct));
         Page.shoppingCartPage().clickRemoveLink(0);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
     }
 
     @Then("The removed product is no longer present in the Shopping Cart")
@@ -175,7 +176,7 @@ public class ShoppingCartStep extends StepSetup {
                 .shoppingCartPage()
                 .inputCoupon(newCoupon.getCouponCode())
                 .clickApplyButton();
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
     }
 
     @Then("^The total price displayed in the shopping cart reflects the discounted amount after applying the coupon (.+)$")

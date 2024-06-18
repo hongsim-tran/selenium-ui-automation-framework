@@ -44,7 +44,7 @@ public class BaseTest {
     @Parameters({"target", "browser"})
     protected void setup(String target, String browser) {
         MyLogger.debug("Start driver...!");
-        driver = new DriverManager().createDriverInstance(target, browser);
+        driver = new DriverManager().createDriverInstance(browser);
         DriverManager.setDriver(driver, target);
 
         softAssert = new SoftAssert();

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 /**
  * This class provides a singleton instance to manage the WebDriver instance and WebDriverWait throughout the test execution.
@@ -38,7 +39,7 @@ public class DriverManager {
         if (getDriver() != null)
             quit();
         DriverManager.driver.set(driver);
-        wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(config(target).longTimeout())));
+        wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(envConfig(target).longTimeout())));
     }
 
     /**
@@ -79,7 +80,7 @@ public class DriverManager {
      * @param browser The name of the browser to be used (e.g., "CHROME", "FIREFOX").
      * @return A new WebDriver instance for the specified browser.
      */
-    public WebDriver createDriverInstance(String target, String browser) {
-        return BrowserFactory.valueOf(browser.toUpperCase()).initDriver(target);
+    public WebDriver createDriverInstance(String browser) {
+        return BrowserFactory.valueOf(browser.toUpperCase()).initDriver();
     }
 }

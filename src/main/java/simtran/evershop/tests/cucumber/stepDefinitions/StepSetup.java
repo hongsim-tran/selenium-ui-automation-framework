@@ -20,9 +20,8 @@ public class StepSetup {
     public static Faker faker;
 
     public static void stepSetup(){
-        Configurator.setAllLevels(LogManager.getRootLogger().getName(), (config().logLevel()));
         MyLogger.debug("Start driver...!");
-        driver = new DriverManager().createDriverInstance(target, browser);
+        driver = new DriverManager().createDriverInstance(browser);
         DriverManager.setDriver(driver, StepSetup.target);
         softAssert = new SoftAssert();
         faker = new Faker();

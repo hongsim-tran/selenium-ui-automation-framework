@@ -8,6 +8,7 @@ import simtran.core.wdm.DriverManager;
 
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 /**
  * This class provides utility methods for collecting test data and artifacts for inclusion in the Allure report
@@ -26,8 +27,8 @@ public class AllureManager {
                 ImmutableMap.<String, String>builder()
                         .put("OS", System.getProperty("os.name"))
                         .put("Test Environment", target)
-                        .put("Headless mode", config(target).headless().toString())
-                        .put("URL", config(target).baseUrl())
+                        .put("Headless mode", config().headless().toString())
+                        .put("URL", envConfig(target).baseUrl())
                         .build());
     }
 

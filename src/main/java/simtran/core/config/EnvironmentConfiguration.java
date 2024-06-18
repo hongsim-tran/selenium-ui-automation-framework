@@ -7,14 +7,14 @@ import org.aeonbits.owner.Config.Sources;
 import org.apache.logging.log4j.Level;
 
 /**
- * This interface maps properties from config.properties file into Java methods
+ * This interface maps properties from env.properties file into Java methods
  *
  * @author simtran
  */
 @LoadPolicy(LoadType.MERGE)
 @Sources({"system:properties",
-        "file:./src/main/resources/config/config.properties"})
-public interface Configuration extends Config {
+        "file:./src/main/resources/config/env.properties"})
+public interface EnvironmentConfiguration extends Config {
 
     @Key("${env}.baseurl")
     String baseUrl();
@@ -45,13 +45,4 @@ public interface Configuration extends Config {
 
     @Key("${env}.short.timeout")
     int shortTimeout();
-
-    @Key("${env}.headless")
-    Boolean headless();
-
-    @Key("log.level")
-    Level logLevel();
-
-    @Key("retry")
-    int retry();
 }

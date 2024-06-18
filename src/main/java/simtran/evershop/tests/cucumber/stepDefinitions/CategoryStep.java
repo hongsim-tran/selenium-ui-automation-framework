@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 public class CategoryStep extends StepSetup {
     List<String> productNames;
@@ -49,7 +50,7 @@ public class CategoryStep extends StepSetup {
                 .categoryPage()
                 .selectSortByDropdown("Name")
                 .clickSortArrow(false);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
     }
 
     @Then("Products are sorted by name in asc order")
@@ -62,7 +63,7 @@ public class CategoryStep extends StepSetup {
     @When("User sorts products by name in desc order")
     public void userSortsProductsByNameInDescOrder() {
         Page.categoryPage().clickSortArrow(true);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
     }
 
     @Then("Products are sorted by name in desc order")
@@ -79,7 +80,7 @@ public class CategoryStep extends StepSetup {
                 .categoryPage()
                 .selectSortByDropdown("Price")
                 .clickSortArrow(false);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
     }
 
     @Then("Products are sorted by price in asc order")
@@ -93,7 +94,7 @@ public class CategoryStep extends StepSetup {
     @When("User sorts products by price in desc order")
     public void userSortsProductsByPriceInDescOrder() {
         Page.categoryPage().clickSortArrow(true);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
     }
 
     @Then("Products are sorted by price in desc order")

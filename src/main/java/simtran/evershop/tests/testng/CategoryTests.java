@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 public class CategoryTests extends BaseTest {
 
@@ -48,13 +49,13 @@ public class CategoryTests extends BaseTest {
                 .categoryPage()
                 .selectSortByDropdown("Name")
                 .clickSortArrow(false);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
         List<String> sortedProductsAsc = Page.categoryPage().getProductNames();
         Collections.sort(productNames);
         softAssert.assertEquals(sortedProductsAsc, productNames);
 
         Page.categoryPage().clickSortArrow(true);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
         List<String> sortedProductsDesc = Page.categoryPage().getProductNames();
         productNames.sort(Collections.reverseOrder());
         softAssert.assertEquals(productNames, sortedProductsDesc);
@@ -71,14 +72,14 @@ public class CategoryTests extends BaseTest {
                 .categoryPage()
                 .selectSortByDropdown("Price")
                 .clickSortArrow(false);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
         List<Double> sortedPricesAsc = CurrencyUtils.convertCurrencyStringToDouble(Page.categoryPage().getProductPrices());
         List<Double> productPricesDouble = CurrencyUtils.convertCurrencyStringToDouble(productPrices);
         Collections.sort(productPricesDouble);
         softAssert.assertEquals(productPricesDouble, sortedPricesAsc);
 
         Page.categoryPage().clickSortArrow(true);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
         List<Double> sortedPricesDesc = CurrencyUtils.convertCurrencyStringToDouble(Page.categoryPage().getProductPrices());
         productPricesDouble.sort(Collections.reverseOrder());
         softAssert.assertEquals(sortedPricesDesc, productPricesDouble);

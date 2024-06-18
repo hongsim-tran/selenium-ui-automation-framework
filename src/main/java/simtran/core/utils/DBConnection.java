@@ -3,6 +3,7 @@ package simtran.core.utils;
 import java.sql.*;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 /**
  * This class provides methods for connecting to a database, executing queries, and closing the connection.
@@ -21,7 +22,7 @@ public class DBConnection {
      */
     public static void getConnection(String target) {
         try {
-            connection = DriverManager.getConnection(config(target).databaseUrl(), config(target).databaseUsername(), config(target).databasePassword());
+            connection = DriverManager.getConnection(envConfig(target).databaseUrl(), envConfig(target).databaseUsername(), envConfig(target).databasePassword());
             statement = connection.createStatement();
         } catch (SQLException e) {
             MyLogger.error(new RuntimeException(e).toString());

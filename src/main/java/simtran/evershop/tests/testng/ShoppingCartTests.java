@@ -17,6 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static simtran.core.config.ConfigManager.config;
+import static simtran.core.config.ConfigManager.envConfig;
 
 public class ShoppingCartTests extends BaseTest {
 
@@ -64,7 +65,7 @@ public class ShoppingCartTests extends BaseTest {
             if (Page.productDetailsPage().getNumberOfVariants() > 0){
                 for (int j = 0; j < Page.productDetailsPage().getNumberOfVariants(); j++){
                     Page.productDetailsPage().clickRandomVariantButton(j);
-                    wait(config(target).shortTimeout());
+                    wait(envConfig(target).shortTimeout());
                     productAttribute.put(String.format("variant-%s", j), Page.productDetailsPage().getSelectedVariantButton(j).toLowerCase());
                 }
             }
@@ -73,7 +74,7 @@ public class ShoppingCartTests extends BaseTest {
             boolean isAdded = false;
             while (true){
                 Page.productDetailsPage().inputQty(String.valueOf(qty)).clickAddToCartButton();
-                wait(config(target).shortTimeout());
+                wait(envConfig(target).shortTimeout());
                 if (Page.productDetailsPage().isQtyErrorMessageVisible()){
                     if (qty == 1)
                         break;
@@ -131,7 +132,7 @@ public class ShoppingCartTests extends BaseTest {
             if (Page.productDetailsPage().getNumberOfVariants() > 0){
                 for (int j = 0; j < Page.productDetailsPage().getNumberOfVariants(); j++){
                     Page.productDetailsPage().clickRandomVariantButton(j);
-                    wait(config(target).shortTimeout());
+                    wait(envConfig(target).shortTimeout());
                     productAttribute.put(String.format("variant-%s", j), Page.productDetailsPage().getSelectedVariantButton(j).toLowerCase());
                 }
             }
@@ -140,7 +141,7 @@ public class ShoppingCartTests extends BaseTest {
             boolean isAdded = false;
             while (true){
                 Page.productDetailsPage().inputQty(String.valueOf(qty)).clickAddToCartButton();
-                wait(config(target).shortTimeout());
+                wait(envConfig(target).shortTimeout());
                 if (Page.productDetailsPage().isQtyErrorMessageVisible()){
                     if (qty == 1)
                         break;
@@ -156,7 +157,7 @@ public class ShoppingCartTests extends BaseTest {
         }
 
         Page.homepage().clickShoppingCartMenu();
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
         HashMap<String, String> firstProductAttribute = new HashMap<>();
         firstProductAttribute.put("product-name", Page.shoppingCartPage().getProductName(0));
         firstProductAttribute.put("product-price", Page.shoppingCartPage().getProductPrice(0));
@@ -170,7 +171,7 @@ public class ShoppingCartTests extends BaseTest {
 
         addedProductAttributes.removeIf(product -> product.equals(firstProductAttribute));
         Page.shoppingCartPage().clickRemoveLink(0);
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
 
 
         List<Map<String, String>> cartProductAttributes = new CopyOnWriteArrayList<>();
@@ -216,7 +217,7 @@ public class ShoppingCartTests extends BaseTest {
             if (Page.productDetailsPage().getNumberOfVariants() > 0){
                 for (int j = 0; j < Page.productDetailsPage().getNumberOfVariants(); j++){
                     Page.productDetailsPage().clickRandomVariantButton(j);
-                    wait(config(target).shortTimeout());
+                    wait(envConfig(target).shortTimeout());
                 }
             }
             String sku = Page.productDetailsPage().getSku();
@@ -224,7 +225,7 @@ public class ShoppingCartTests extends BaseTest {
             boolean isAdded = false;
             while (true){
                 Page.productDetailsPage().inputQty(String.valueOf(qty)).clickAddToCartButton();
-                wait(config(target).shortTimeout());
+                wait(envConfig(target).shortTimeout());
                 if (Page.productDetailsPage().isQtyErrorMessageVisible()){
                     if (qty == 1)
                         break;
@@ -269,14 +270,14 @@ public class ShoppingCartTests extends BaseTest {
             if (Page.productDetailsPage().getNumberOfVariants() > 0){
                 for (int j = 0; j < Page.productDetailsPage().getNumberOfVariants(); j++){
                     Page.productDetailsPage().clickRandomVariantButton(j);
-                    wait(config(target).shortTimeout());
+                    wait(envConfig(target).shortTimeout());
                 }
             }
             String sku = Page.productDetailsPage().getSku();
             int qty = faker.number().numberBetween(1, getProductQty(sku));
             while (true){
                 Page.productDetailsPage().inputQty(String.valueOf(qty)).clickAddToCartButton();
-                wait(config(target).shortTimeout());
+                wait(envConfig(target).shortTimeout());
                 if (Page.productDetailsPage().isQtyErrorMessageVisible()){
                     if (qty == 1)
                         break;
@@ -295,7 +296,7 @@ public class ShoppingCartTests extends BaseTest {
                 .clickShoppingCartMenu()
                 .inputCoupon(newCouponFixedDiscount.getCouponCode())
                 .clickApplyButton();
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
 
         double expectedTotal = (CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()) - newCouponFixedDiscount.getDiscountAmount());
         softAssert.assertEquals(CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getTotalPrice()), expectedTotal);
@@ -305,7 +306,7 @@ public class ShoppingCartTests extends BaseTest {
                 .shoppingCartPage()
                 .inputCoupon(newCouponPercentageDiscount.getCouponCode())
                 .clickApplyButton();
-        wait(config(target).shortTimeout());
+        wait(envConfig(target).shortTimeout());
 
         expectedTotal = Math.round(((CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice())
                 - CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()) * newCouponPercentageDiscount.getDiscountAmount() * 0.01) * 100) / 100);
