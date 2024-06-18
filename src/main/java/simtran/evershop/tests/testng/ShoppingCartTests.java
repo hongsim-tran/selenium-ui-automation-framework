@@ -1,8 +1,5 @@
-package simtran.evershop.tests.store;
+package simtran.evershop.tests.testng;
 
-import io.qameta.allure.internal.shadowed.jackson.annotation.JsonTypeInfo;
-import io.qameta.allure.internal.shadowed.jackson.databind.util.TypeKey;
-import lombok.Value;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import simtran.core.base.BaseTest;
@@ -14,7 +11,6 @@ import simtran.evershop.dbqueries.Queries;
 import simtran.evershop.models.NewCouponModel;
 import simtran.evershop.pages.Page;
 
-import java.awt.desktop.QuitEvent;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -203,7 +199,7 @@ public class ShoppingCartTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "Shopping Cart - Verify calculating Subtotal and Total value")
+    @Test(description = "Shopping Cart - Verify subtotal and total calculation")
     public void verifySubtotalTotalValue() throws SQLException {
         Page.openStoreUrl(target);
         int numOfAddedProducts = faker.number().numberBetween(1, 10);

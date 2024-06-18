@@ -1,4 +1,4 @@
-package simtran.evershop.tests.store;
+package simtran.evershop.tests.testng;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
