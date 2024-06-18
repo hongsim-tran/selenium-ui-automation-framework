@@ -2,7 +2,7 @@
 
 ### **Description**
 
-This Java framework automates web UI testing using Selenium WebDriver, managed by Maven and executed through TestNG. Here are some main features of the framework:
+This Java framework automates web UI testing using Selenium WebDriver, managed by Maven and executed through TestNG and Cucumber. Here are some main features of the framework:
 
 * Runs tests on multiple environments (local, QA, production, etc.)
 * Runs tests in single-threaded or parallel mode
@@ -13,6 +13,8 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 * Connects to and queries databases
 * Generates test reports using Allure reports
 * Supports CI/CD integration with GitHub Actions and Jenkins
+
+Additionally, the framework supports writing tests in both TestNG and BDD (Cucumber) formats, offering flexibility in choosing the testing approach that best suits your needs
 
 ![Static Badge](https://img.shields.io/badge/Java-green)
 ![Static Badge](https://img.shields.io/badge/Maven-blue?style=flat)
