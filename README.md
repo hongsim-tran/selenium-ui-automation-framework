@@ -169,8 +169,17 @@ Web Automation Framework
         │           │       ├── Homepage.java
         │           │       └── ...
         │           └── tests
-        │               └── store
-        │                   ├── CategoryTests.java
+        │               ├── cucumber
+        │               │   ├── features
+        │               │   │   ├── Login.feature
+        │               │   │   └── ...
+        │               │   ├── runner
+        │               │   │   └── TestRunner.java
+        │               │   └── stepDefinitions
+        │               │       ├── LoginStep.java
+        │               │       └── ...
+        │               └── testng
+        │                   ├── LoginTests.java
         │                   └── ...
         └── resources
             ├── config
