@@ -6,7 +6,7 @@
     <name>ST Automation Framework</name>
 
     <groupId>simtran.automation</groupId>
-    <artifactId>automation-framework</artifactId>
+    <artifactId>web-automation-framework</artifactId>
     <version>1.0</version>
 
     <properties>
