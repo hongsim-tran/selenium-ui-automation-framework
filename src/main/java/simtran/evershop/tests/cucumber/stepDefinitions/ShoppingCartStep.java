@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import simtran.core.utils.CurrencyUtils;
 import simtran.core.utils.DBConnection;
 import simtran.core.utils.MyLogger;
@@ -105,6 +106,7 @@ public class ShoppingCartStep extends StepSetup {
         for (ConcurrentHashMap<String, String> product: cartProducts){
             softAssert.assertTrue(addedProducts.contains(product));
         }
+        softAssert.assertAll();
     }
 
     @And("User removes a product from shopping cart")
@@ -153,6 +155,7 @@ public class ShoppingCartStep extends StepSetup {
             softAssert.assertTrue(addedProducts.isEmpty());
             softAssert.assertTrue(cartProducts.isEmpty());
         }
+        softAssert.assertAll();
     }
 
     @Then("The subtotal displayed in the shopping cart matches the sum of individual product prices")
@@ -169,7 +172,7 @@ public class ShoppingCartStep extends StepSetup {
     @And("^User enters a valid coupon code (.+)$")
     public void userEntersAValidCouponCode(String discountType) {
         DBConnection.executeUpdate(Queries.deleteAllCoupons());
-        newCoupon = CouponDataFactory.generateValidCouponData(NewCouponModel.DiscountType.FIXED_DISCOUNT_ENTIRE_ORDER);
+        newCoupon = CouponDataFactory.generateValidCouponData();
         DBConnection.executeUpdate(Queries.insertCoupon(newCoupon.getCouponCode(), newCoupon.getDescription(), newCoupon.getDiscountAmount(), discountType));
 
         Page
@@ -190,5 +193,6 @@ public class ShoppingCartStep extends StepSetup {
                     - CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()) * newCoupon.getDiscountAmount() * 0.01) * 100) / 100);
             softAssert.assertEquals(CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getTotalPrice()), expectedTotal);
         }
+        softAssert.assertAll();
     }
 }

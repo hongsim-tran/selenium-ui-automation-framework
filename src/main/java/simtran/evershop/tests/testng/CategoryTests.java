@@ -3,14 +3,12 @@ package simtran.evershop.tests.testng;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import simtran.core.base.BaseTest;
 import simtran.core.utils.CurrencyUtils;
 import simtran.evershop.pages.Page;
 
 import java.util.Collections;
 import java.util.List;
 
-import static simtran.core.config.ConfigManager.config;
 import static simtran.core.config.ConfigManager.envConfig;
 
 public class CategoryTests extends BaseTest {

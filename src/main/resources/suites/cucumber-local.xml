@@ -15,10 +15,10 @@
         </classes>
     </test>
 
-<!--    <test name="Firefox Execution">-->
-<!--        <parameter name="browser" value="firefox"/>-->
-<!--        <classes>-->
-<!--            <class name="runner.TestRunner"/>-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="Firefox Execution">
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="simtran.evershop.tests.cucumber.runner.TestRunner"/>
+        </classes>
+    </test>
 </suite>

@@ -1,8 +1,8 @@
 package simtran.evershop.tests.testng;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import simtran.core.base.BaseTest;
 import simtran.core.utils.CurrencyUtils;
 import simtran.core.utils.DBConnection;
 import simtran.core.utils.MyLogger;
@@ -16,7 +16,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static simtran.core.config.ConfigManager.config;
 import static simtran.core.config.ConfigManager.envConfig;
 
 public class ShoppingCartTests extends BaseTest {
@@ -45,6 +44,11 @@ public class ShoppingCartTests extends BaseTest {
         DBConnection.getConnection(target);
         DBConnection.executeUpdate(Queries.insertCoupon(couponCode, description, discountAmount, discountType));
         DBConnection.closeConnection();
+    }
+
+    @DataProvider
+    public Object[][] discountType(){
+        return excelReader.getTableArray("DiscountType");
     }
 
     @Test(description = "Shopping Cart - Verify adding multiple products to shopping cart")
@@ -251,14 +255,12 @@ public class ShoppingCartTests extends BaseTest {
         Assert.assertEquals(expectedTotal, CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()));
     }
 
-    @Test(description = "Shopping Cart - Verify applying a coupon")
-    public void verifyApplyCoupon() throws SQLException {
+    @Test(description = "Shopping Cart - Verify applying a coupon", dataProvider = "discountType")
+    public void verifyApplyCoupon(String discountType) throws SQLException {
         // Prepare test data from database
         deleteAllCoupons();
-        NewCouponModel newCouponFixedDiscount = CouponDataFactory.generateValidCouponData(NewCouponModel.DiscountType.FIXED_DISCOUNT_ENTIRE_ORDER);
-        NewCouponModel newCouponPercentageDiscount = CouponDataFactory.generateValidCouponData(NewCouponModel.DiscountType.PERCENTAGE_DISCOUNT_ENTIRE_ORDER);
-        insertNewCoupon(newCouponFixedDiscount.getCouponCode(), newCouponFixedDiscount.getDescription(), newCouponFixedDiscount.getDiscountAmount(), newCouponFixedDiscount.getDiscountType());
-        insertNewCoupon(newCouponPercentageDiscount.getCouponCode(), newCouponPercentageDiscount.getDescription(), newCouponPercentageDiscount.getDiscountAmount(), newCouponPercentageDiscount.getDiscountType());
+        NewCouponModel newCoupon = CouponDataFactory.generateValidCouponData();
+        insertNewCoupon(newCoupon.getCouponCode(), newCoupon.getDescription(), newCoupon.getDiscountAmount(), discountType);
 
         Page.openStoreUrl(target);
         int numOfAddedProducts = faker.number().numberBetween(1, 10);
@@ -289,28 +291,22 @@ public class ShoppingCartTests extends BaseTest {
 
             Page.productDetailsPage().clickLogoLink();
         }
-
-        // Apply a coupon which is fixed discount to entire order
         Page
                 .homepage()
                 .clickShoppingCartMenu()
-                .inputCoupon(newCouponFixedDiscount.getCouponCode())
+                .inputCoupon(newCoupon.getCouponCode())
                 .clickApplyButton();
         wait(envConfig(target).shortTimeout());
 
-        double expectedTotal = (CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()) - newCouponFixedDiscount.getDiscountAmount());
-        softAssert.assertEquals(CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getTotalPrice()), expectedTotal);
-
-        // Apply a coupon which is percentage discount to entire order
-        Page
-                .shoppingCartPage()
-                .inputCoupon(newCouponPercentageDiscount.getCouponCode())
-                .clickApplyButton();
-        wait(envConfig(target).shortTimeout());
-
-        expectedTotal = Math.round(((CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice())
-                - CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()) * newCouponPercentageDiscount.getDiscountAmount() * 0.01) * 100) / 100);
-        softAssert.assertEquals(CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getTotalPrice()), expectedTotal);
+        double expectedTotal;
+        if (discountType.equals("fixed_discount_to_entire_order")){
+            expectedTotal = (CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()) - newCoupon.getDiscountAmount());
+            softAssert.assertEquals(CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getTotalPrice()), expectedTotal);
+        } else if (discountType.equals("percentage_discount_to_entire_order")){
+            expectedTotal = Math.round(((CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice())
+                    - CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getSubTotalPrice()) * newCoupon.getDiscountAmount() * 0.01) * 100) / 100);
+            softAssert.assertEquals(CurrencyUtils.convertCurrencyStringToDouble(Page.shoppingCartPage().getTotalPrice()), expectedTotal);
+        }
         softAssert.assertAll();
     }
 }

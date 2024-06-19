@@ -4,6 +4,7 @@ import net.datafaker.Faker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.openqa.selenium.WebDriver;
+import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 import simtran.core.utils.MyLogger;
 import simtran.core.wdm.DriverManager;
@@ -18,6 +19,14 @@ public class StepSetup {
     public static WebDriver driver;
     public static SoftAssert softAssert;
     public static Faker faker;
+
+    public static void setTarget(){
+        target = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("target");
+    }
+
+    public static void setBrowser(){
+        browser = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");
+    }
 
     public static void stepSetup(){
         MyLogger.debug("Start driver...!");

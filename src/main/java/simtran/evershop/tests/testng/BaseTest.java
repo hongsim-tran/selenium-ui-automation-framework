@@ -1,4 +1,4 @@
-package simtran.core.base;
+package simtran.evershop.tests.testng;
 
 import net.datafaker.Faker;
 import org.apache.logging.log4j.LogManager;
@@ -26,11 +26,10 @@ import static simtran.core.config.ConfigManager.config;
  */
 @Listeners(MyListener.class)
 public class BaseTest {
-
     protected WebDriver driver;
     protected SoftAssert softAssert;
     protected String target;
-    protected ExcelReader excelReader = new ExcelReader(Framework.TEST_DATA_PATH);
+    protected ExcelReader excelReader = new ExcelReader(Framework.TEST_DATA_PATH);;
     protected Faker faker = new Faker();
 
     @BeforeSuite(alwaysRun = true)

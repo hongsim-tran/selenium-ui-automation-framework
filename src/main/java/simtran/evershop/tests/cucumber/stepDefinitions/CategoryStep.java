@@ -58,6 +58,7 @@ public class CategoryStep extends StepSetup {
         List<String> sortedProductsAsc = Page.categoryPage().getProductNames();
         Collections.sort(productNames);
         softAssert.assertEquals(sortedProductsAsc, productNames);
+        softAssert.assertAll();
     }
 
     @When("User sorts products by name in desc order")
@@ -71,6 +72,7 @@ public class CategoryStep extends StepSetup {
         List<String> sortedProductsDesc = Page.categoryPage().getProductNames();
         productNames.sort(Collections.reverseOrder());
         softAssert.assertEquals(productNames, sortedProductsDesc);
+        softAssert.assertAll();
     }
 
     @When("User sorts products by price in asc order")
@@ -89,6 +91,7 @@ public class CategoryStep extends StepSetup {
         productPricesDouble = CurrencyUtils.convertCurrencyStringToDouble(productPrices);
         Collections.sort(productPricesDouble);
         softAssert.assertEquals(productPricesDouble, sortedPricesAsc);
+        softAssert.assertAll();
     }
 
     @When("User sorts products by price in desc order")
@@ -102,5 +105,6 @@ public class CategoryStep extends StepSetup {
         List<Double> sortedPricesDesc = CurrencyUtils.convertCurrencyStringToDouble(Page.categoryPage().getProductPrices());
         productPricesDouble.sort(Collections.reverseOrder());
         softAssert.assertEquals(sortedPricesDesc, productPricesDouble);
+        softAssert.assertAll();
     }
 }

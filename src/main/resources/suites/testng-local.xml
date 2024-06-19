@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Evershop End to End Test" verbose="0" parallel="tests" thread-count="2">
-    <!--    <groups>-->
-    <!--        <run>-->
-    <!--            <include name="local"/>-->
-    <!--        </run>-->
-    <!--    </groups>-->
 
     <listeners>
         <listener class-name="simtran.core.retry.AnnotationTransformer"/>

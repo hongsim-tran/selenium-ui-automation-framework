@@ -1,7 +1,6 @@
 package simtran.evershop.tests.testng;
 
 import org.testng.annotations.Test;
-import simtran.core.base.BaseTest;
 import simtran.evershop.pages.Page;
 
 import java.util.List;

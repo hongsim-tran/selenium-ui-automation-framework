@@ -22,6 +22,7 @@ public class ProductDetailsStep extends StepSetup {
         softAssert.assertTrue(productNames.get(index).toLowerCase().contains(Page.productDetailsPage().getPagePath().toLowerCase()));
         softAssert.assertTrue(productNames.get(index).toLowerCase().contains(Page.productDetailsPage().getProductName().toLowerCase()));
         softAssert.assertTrue(productPrices.get(index).equalsIgnoreCase(Page.productDetailsPage().getProductPrice()));
+        softAssert.assertAll();
     }
 
     @When("^User clicks on product number (.+) on the category page$")

@@ -19,8 +19,8 @@ public class Hooks {
 
     @BeforeAll
     public static void beforeAll(){
-        StepSetup.target = "local";
-        StepSetup.browser = "chrome";
+        StepSetup.setTarget();
+        StepSetup.setBrowser();
         Configurator.setAllLevels(LogManager.getRootLogger().getName(), (config().logLevel()));
         AllureManager.setAllureEnvironment(StepSetup.target);
     }
@@ -33,7 +33,6 @@ public class Hooks {
 
     @After
     public void afterScenario(){
-        StepSetup.softAssert.assertAll();
         DriverManager.quit();
         DBConnection.closeConnection();
     }
