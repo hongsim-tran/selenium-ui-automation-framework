@@ -79,20 +79,24 @@ https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/05839733-
 
 
 There are 2 profiles supported: local and production.
+  If run the TestNG tests:
 * Local environment:
   * Prerequisite: Have [Evershop](https://evershop.io/docs/development/getting-started/installation-guide) installed and started locally. 
   * Run tests: 
   ```
-  ./mvnw clean install -Plocal-test`
+  ./mvnw clean install -Ptestng-local
   ```
   
   
 * Production environment:
   * Run tests: 
   ````
-  ./mvnw clean install -Pprod-test
+  ./mvnw clean install -Ptestng-prod
   ````
-
+  If run the Cucumber tests:
+    ```
+  ./mvnw clean install -Pcucumber-prod 
+    ```
 
 ### **Tech Stacks**
 
