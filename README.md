@@ -95,7 +95,7 @@ There are 2 profiles supported: local and production.
   ````
   If run the Cucumber tests:
     ```
-  ./mvnw clean install -Pcucumber-prod 
+  ./mvnw clean install -Pcucumber-local
     ```
 
 ### **Tech Stacks**
