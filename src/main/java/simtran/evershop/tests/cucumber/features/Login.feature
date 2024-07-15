@@ -1,10 +1,20 @@
 Feature: Login
-  
-  Scenario: Verify logging in with valid credential
-    Given User is on Login page
-    When User enter username "shop1@test.com" and password "12345678"
-    Then Homepage is displayed
 
+  Scenario Outline: Verify logging in with valid credential
+    Given User is on Login page
+    When User enter username "<username>" and password "<password>"
+    Then Homepage is displayed
+    @local
+    Examples:
+    |      username     |     password    |
+    |   shop1@test.com  |     12345678    |
+
+    @prod
+    Examples:
+      |       username      |     password    |
+      |   demo@evershop.io  |      123456     |
+
+  @local @prod
   Scenario: Verify logging in with invalid credentials
     Given User is on Login page
     When User login without entering username and password

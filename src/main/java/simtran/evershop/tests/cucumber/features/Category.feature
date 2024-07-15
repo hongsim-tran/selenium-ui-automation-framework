@@ -1,3 +1,4 @@
+@local @prod
 Feature: Category page
 
   Scenario Outline: Verify opening categories from Homepage

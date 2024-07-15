@@ -1,19 +1,19 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Evershop Cucumber End to End Test" verbose="0" parallel="tests" thread-count="2">
 
-    <parameter name="target" value="local"/>
+    <parameter name="target" value="prod"/>
 
     <test name="Chrome Execution">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="simtran.evershop.tests.cucumber.runner.TestRunnerLocal"/>
+            <class name="simtran.evershop.tests.cucumber.runner.TestRunnerProd"/>
         </classes>
     </test>
 
 <!--    <test name="Firefox Execution">-->
 <!--        <parameter name="browser" value="firefox"/>-->
 <!--        <classes>-->
-<!--            <class name="simtran.evershop.tests.cucumber.runner.TestRunnerLocal"/>-->
+<!--            <class name="simtran.evershop.tests.cucumber.runner.TestRunnerProd"/>-->
 <!--        </classes>-->
 <!--    </test>-->
 </suite>

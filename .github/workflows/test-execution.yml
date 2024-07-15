@@ -3,21 +3,31 @@ name: Test execution
 on:
   workflow_dispatch:
     inputs:
-      local-test:
-        description: 'Local execution'
+      testng-local:
+        description: 'TestNG tests - Local execution'
         required: true
         default: false
         type: boolean
-      prod-test:
-        description: 'Production execution'
+      testng-prod:
+        description: 'TestNG tests - Production execution'
+        required: true
+        default: true
+        type: boolean
+      cucumber-local:
+        description: 'Cucumber tests - Local execution'
+        required: true
+        default: false
+        type: boolean
+      cucumber-prod:
+        description: 'Cucumber tests - Production execution'
         required: true
         default: true
         type: boolean
 
 jobs:
-  local-test:
-    name: Local test execution
-    if: ${{inputs.local-test}}
+  testng-local:
+    name: TestNG tests - Local execution
+    if: ${{inputs.testng-local}}
     runs-on: ubuntu-latest
 
     steps:
@@ -60,11 +70,11 @@ jobs:
 
       - name: Execute tests
         run: |
-          ./mvnw clean install -Plocal-test
+          ./mvnw clean install -Ptestng-local
 
-  production-test:
-    name: Production test execution
-    if: ${{inputs.prod-test}}
+  testng-prod:
+    name: TestNG tests - Production execution
+    if: ${{inputs.testng-prod}}
     runs-on: ubuntu-latest
 
     steps:
@@ -78,7 +88,98 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Execute tests
-        run: ./mvnw clean install -Pprod-test
+        run: ./mvnw clean install -Ptestng-prod
+
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          token: ${{secrets.GIT_TOKEN}}
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: target/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{secrets.GIT_TOKEN}}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+
+  cucumber-local:
+    name: Cucumber tests - Local execution
+    if: ${{inputs.cucumber-local}}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.1.0
+
+      - name: Setup PostgreSQL database
+        id: postgres
+        uses: ikalnytskyi/action-setup-postgres@v6
+        with:
+          username: simtran
+          database: evershop
+          port: 5432
+
+      - name: Install Evershop
+        run: |
+          mkdir evershop
+          cd evershop
+          npm init
+          npm install @evershop/evershop
+          npm run setup
+
+      - name: Build and start Evershop
+        run: |
+          npm run build
+          npm run start & 
+          sleep 180 &&
+          curl http://localhost:3000
+
+      - name: Setup JDKs 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: 21
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute tests
+        run: |
+          ./mvnw clean install -Pcucumber-local
+
+  cucumber-prod:
+    name: Cucumber tests - Production execution
+    if: ${{inputs.cucumber-prod}}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup JDKs 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: 21
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Execute tests
+        run: ./mvnw clean install -Pcucumber-prod
 
       - name: Load test report history
         uses: actions/checkout@v3

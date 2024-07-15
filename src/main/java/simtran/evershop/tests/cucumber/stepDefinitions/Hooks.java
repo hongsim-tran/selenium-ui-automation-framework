@@ -28,13 +28,11 @@ public class Hooks {
     @Before ()
     public void beforeScenario(){
         StepSetup.stepSetup();
-        DBConnection.getConnection(StepSetup.target);
     }
 
     @After
     public void afterScenario(){
         DriverManager.quit();
-        DBConnection.closeConnection();
     }
 
     @AfterStep

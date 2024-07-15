@@ -1,3 +1,4 @@
+@local
 Feature: Shopping cart
 
   Scenario: Verify adding multiple products to the shopping cart

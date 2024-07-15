@@ -1,3 +1,4 @@
+@local @prod
 Feature: Product details page
 
   Scenario Outline: Verify opening product details page from Homepage

@@ -29,12 +29,14 @@ public class ShoppingCartStep extends StepSetup {
 
     private int getProductQty(String sku) throws SQLException {
         int qty = 0;
+        DBConnection.getConnection(StepSetup.target);
         var rs = DBConnection.executeQuery(Queries.selectProductQtyWithSku(sku));
         while (true){
             assert rs != null;
             if (!rs.next()) break;
             qty = rs.getInt("qty");
         }
+        DBConnection.closeConnection();
         MyLogger.debug(String.format("Quantity value of the product sku %s is %d", sku, qty));
         return qty;
     }
@@ -171,9 +173,11 @@ public class ShoppingCartStep extends StepSetup {
 
     @And("^User enters a valid coupon code (.+)$")
     public void userEntersAValidCouponCode(String discountType) {
+        DBConnection.getConnection(StepSetup.target);
         DBConnection.executeUpdate(Queries.deleteAllCoupons());
         newCoupon = CouponDataFactory.generateValidCouponData();
         DBConnection.executeUpdate(Queries.insertCoupon(newCoupon.getCouponCode(), newCoupon.getDescription(), newCoupon.getDiscountAmount(), discountType));
+        DBConnection.closeConnection();
 
         Page
                 .shoppingCartPage()
