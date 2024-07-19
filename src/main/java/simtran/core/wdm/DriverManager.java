@@ -1,9 +1,12 @@
 package simtran.core.wdm;
 
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import simtran.core.utils.MyLogger;
 
+import java.net.URI;
 import java.time.Duration;
 
 import static simtran.core.config.ConfigManager.config;
@@ -81,6 +84,23 @@ public class DriverManager {
      * @return A new WebDriver instance for the specified browser.
      */
     public WebDriver createDriverInstance(String browser) {
+        if (config().gridEnabled()){
+            return createRemoteInstance(BrowserFactory.valueOf(browser.toUpperCase()).getOptions());
+        }
         return BrowserFactory.valueOf(browser.toUpperCase()).initDriver();
+    }
+
+    private RemoteWebDriver createRemoteInstance(MutableCapabilities capabilities){
+        RemoteWebDriver remoteWebDriver = null;
+        try{
+            String gridUrl = String.format("http://%s:%s/wd/hub", config().gridUrl(), config().gridPort());
+            remoteWebDriver = new RemoteWebDriver(URI.create(gridUrl).toURL(), capabilities);
+        } catch (java.net.MalformedURLException e){
+            MyLogger.error("Grid URL is invalid and Grid is not available");
+            MyLogger.error(String.format("Browser: %s \n%s", capabilities.getBrowserName(), e));
+        } catch (IllegalArgumentException e){
+            MyLogger.error(String.format("Browser %s is invalid or recognized \n%s", capabilities.getBrowserName(), e));
+        }
+        return remoteWebDriver;
     }
 }

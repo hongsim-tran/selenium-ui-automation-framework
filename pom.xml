@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>ST Automation Framework</name>
+    <name>Web Automation Framework</name>
 
     <groupId>simtran.automation</groupId>
     <artifactId>web-automation-framework</artifactId>
@@ -16,7 +16,7 @@
 
         <suite.filepath>src/main/resources/suites</suite.filepath>
 
-        <selenium.version>4.21.0</selenium.version>
+        <selenium.version>4.22.0</selenium.version>
         <testng.version>7.10.1</testng.version>
         <owner.version>1.0.12</owner.version>
         <allure.version>2.27.0</allure.version>
