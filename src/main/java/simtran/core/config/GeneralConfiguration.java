@@ -21,4 +21,13 @@ public interface GeneralConfiguration extends Config {
 
     @Key("retry")
     int retry();
+
+    @Key("grid.enabled")
+    Boolean gridEnabled();
+
+    @Key("grid.url")
+    String gridUrl();
+
+    @Key("grid.port")
+    String gridPort();
 }
