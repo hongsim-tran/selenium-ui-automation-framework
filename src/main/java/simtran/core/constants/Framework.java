@@ -5,6 +5,7 @@ public class Framework {
     public static final String ROOT_PATH = System.getProperty("user.dir");
     public static final String OS = getOS();
     public static final String TEST_DATA_PATH = getFolderPathWithSlash("test-data") + getFolderPathWithSlash("data.xlsx");
+    public static final boolean GRID_ENABLED = Boolean.parseBoolean(System.getProperty("grid-enabled", "false").toLowerCase());
 
     private static String getOS() {
         String osName = System.getProperty("os.name").toLowerCase();

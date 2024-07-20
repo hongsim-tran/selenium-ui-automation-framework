@@ -1,0 +1,44 @@
+services:
+  hub:
+    image: seleniarm/hub:latest
+    ports:
+      - 4444:4444
+      - 4442:4442
+      - 4443:4443
+  chrome:
+    image: seleniarm/node-chromium:latest
+    shm_size: '2g'
+    depends_on:
+      - hub
+    deploy:
+      replicas: 1
+    environment:
+      - SE_EVENT_BUS_HOST=hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+      - SE_NODE_MAX_SESSIONS=4
+  firefox:
+    image: seleniarm/node-firefox:latest
+    shm_size: '2g'
+    depends_on:
+      - hub
+    deploy:
+      replicas: 1
+    environment:
+      - SE_EVENT_BUS_HOST=hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+      - SE_NODE_MAX_SESSIONS=4
+  vendor-portal:
+    image: simtran/web-test
+    depends_on:
+      - chrome
+      - firefox
+    environment:
+      - HUB_HOST=hub
+      - MAVEN_PROFILE=testng-prod
+      - GRID_ENABLED=true
+    volumes:
+      - ./target/allure-results:/home/web-test/target/allure-results

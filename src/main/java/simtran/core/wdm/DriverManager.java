@@ -4,6 +4,7 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import simtran.core.constants.Framework;
 import simtran.core.utils.MyLogger;
 
 import java.net.URI;
@@ -84,7 +85,7 @@ public class DriverManager {
      * @return A new WebDriver instance for the specified browser.
      */
     public WebDriver createDriverInstance(String browser) {
-        if (config().gridEnabled()){
+        if (Framework.GRID_ENABLED){
             return createRemoteInstance(BrowserFactory.valueOf(browser.toUpperCase()).getOptions());
         }
         return BrowserFactory.valueOf(browser.toUpperCase()).initDriver();
