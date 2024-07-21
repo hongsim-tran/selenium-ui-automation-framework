@@ -1,14 +1,18 @@
 pipeline {
     agent any
 
+    parameters {
+      choice choices: ['testng-local', 'testng-prod', 'cucumber-local', 'cucumber-prod'], description: 'Select the profile', name: 'PROFILE'
+    }
+
     tools {
         jdk 'jdk 21'
     }
 
     stages {
-        stage ('Execute tests in local') {
+        stage ('Execute tests') {
             steps {
-                sh './mvnw clean install -Plocal-test'
+                sh './mvnw clean install -P${params.PROFILE}'
             }
             post {
                 always {
