@@ -8,7 +8,7 @@ RUN apk add curl jq
 WORKDIR home/web-tests
 
 # Copy project files
-ADD . .
+ADD .. .
 
 # Run the tests
 ENTRYPOINT sh runner.sh
