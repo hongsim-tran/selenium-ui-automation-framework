@@ -2,8 +2,26 @@ pipeline{
     agent any
 
     stages{
-        stage('Build docker image'){
+        stage('Build test execution docker image'){
+            steps{
+                sh "docker build -t simtran/test-execution ../."
+            }
         }
 
+        stage('Push docker image to hub'){
+            environment{
+                DOCKER_HUB = credentials('docker-credentials')
+            }
+            steps{
+                sh "docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}"
+                sh "docker push simtran/test-execution"
+            }
+        }
+    }
+
+    post{
+        always{
+            sh "docker logout"
+        }
     }
 }

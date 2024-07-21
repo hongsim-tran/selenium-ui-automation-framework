@@ -5,6 +5,7 @@ services:
       - 4444:4444
       - 4442:4442
       - 4443:4443
+
   chrome:
     image: seleniarm/node-chromium:latest
     shm_size: '2g'
@@ -18,6 +19,7 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
       - SE_NODE_MAX_SESSIONS=4
+
   firefox:
     image: seleniarm/node-firefox:latest
     shm_size: '2g'
@@ -31,14 +33,16 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
       - SE_NODE_MAX_SESSIONS=4
-  vendor-portal:
-    image: simtran/web-test
+
+  test-execution:
+    image: simtran/test-execution
     depends_on:
       - chrome
       - firefox
     environment:
       - HUB_HOST=hub
-      - MAVEN_PROFILE=testng-prod
-      - GRID_ENABLED=true
+      - MAVEN_PROFILE=${MAVEN_PROFILE}
+      - GRID_ENABLED=${GRID_ENABLED}
     volumes:
-      - ./target/allure-results:/home/web-test/target/allure-results
+      - ./target/allure-results:/home/web-tests/target/allure-results
+      - ./src/main/resources/test-data/data.xlsx:/home/web-tests/src/main/resources/test-data/data.xlsx

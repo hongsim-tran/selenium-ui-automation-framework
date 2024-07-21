@@ -5,7 +5,7 @@ LABEL authors="simtran"
 RUN apk add curl jq
 
 # Set working directory
-WORKDIR home/web-test
+WORKDIR home/web-tests
 
 # Copy project files
 ADD . .
