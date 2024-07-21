@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-      choice choices: ['testng-local', 'testng-prod', 'cucumber-local', 'cucumber-prod'], description: 'Select the profile', name: 'PROFILE'
+      choice choices: ['testng-local', 'testng-prod', 'cucumber-local', 'cucumber-prod'], description: 'Select the test profile', name: 'PROFILE'
     }
 
     tools {
