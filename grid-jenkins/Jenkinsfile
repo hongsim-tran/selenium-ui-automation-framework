@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('Build test execution docker image'){
             steps{
-                sh "docker build -t simtran/test-execution ."
+                sh "docker build -t simtran/test-execution ./grid-jenkins"
             }
         }
 
