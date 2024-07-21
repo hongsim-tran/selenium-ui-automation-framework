@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('Build test execution docker image'){
             steps{
-                sh "docker build -t simtran/test-execution ./grid-jenkins"
+                sh "docker build -t simtran/test-execution:latest ./grid-docker"
             }
         }
 
@@ -14,7 +14,8 @@ pipeline{
             }
             steps{
                 sh 'echo ${DOCKER_HUB_PSW} | docker login -u ${DOCKER_HUB_USR} --password-stdin'
-                sh "docker push simtran/test-execution"
+                sh "docker push simtran/test-execution:latest"
+
             }
         }
     }
