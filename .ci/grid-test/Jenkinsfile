@@ -17,15 +17,14 @@ pipeline {
                 sh 'docker compose -f grid/${PROFILE}.yaml up'
             }
         }
-
-        post {
-            always {
-                allure includeProperties: false,
-                dk: '',
-                results: [[path: 'target/allure-results']]
-                sh 'docker compose -f grid/grid.yaml down'
-                sh 'docker compose -f grid/${PROFILE}.yaml down'
-            }
+    }
+    post {
+        always {
+            allure includeProperties: false,
+            dk: '',
+            results: [[path: 'target/allure-results']]
+            sh 'docker compose -f grid/grid.yaml down'
+            sh 'docker compose -f grid/${PROFILE}.yaml down'
         }
     }
 }
