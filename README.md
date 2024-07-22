@@ -12,6 +12,7 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 * Provides keywords for interacting with web UI elements
 * Connects to and queries databases
 * Generates test reports using Allure reports
+* Docker build for tests run with Selenium Grid
 * Supports CI/CD integration with GitHub Actions and Jenkins
 
 Additionally, the framework supports writing tests in both TestNG and BDD (Cucumber) formats, offering flexibility in choosing the testing approach that best suits your needs
