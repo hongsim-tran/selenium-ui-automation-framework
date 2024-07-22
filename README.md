@@ -329,7 +329,7 @@ Web Automation Framework
       }
       ```
   
-  * `tests`: contains automated test cases for the evershop application
+  * `tests`: contains automated test cases for the evershop application which are written in both TestNG and BDD (Cucumber) formats
 
 
 
