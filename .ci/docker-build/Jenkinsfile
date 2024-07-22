@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     stages{
-        stage('Build test execution docker image'){
+        stage('Build tests docker image'){
             steps{
                 sh "docker build -t simtran/automation-tests:latest ."
             }

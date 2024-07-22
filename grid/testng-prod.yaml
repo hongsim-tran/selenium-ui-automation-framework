@@ -1,0 +1,9 @@
+services:
+  test-execution:
+    image: simtran/automation-tests
+    environment:
+      - HUB_HOST=hub
+      - MAVEN_PROFILE=testng-prod
+      - GRID_ENABLED=true
+    volumes:
+      - ../target/allure-results:/home/web-tests/target/allure-results

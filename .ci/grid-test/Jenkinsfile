@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    parameters {
+      choice choices: ['testng-prod', 'cucumber-prod'], description: 'Select the test profile', name: 'PROFILE'
+    }
+
+    stages {
+        stage ('Start Grid') {
+            steps {
+                sh 'docker compose -f grid/grid.yaml up -d'
+            }
+        }
+
+        stage('Execute tests'){
+            steps{
+                sh 'docker compose -f grid/${PROFILE}.yaml up'
+            }
+        }
+
+        post {
+            always {
+                allure includeProperties: false,
+                dk: '',
+                results: [[path: 'target/allure-results']]
+                sh 'docker compose -f grid/grid.yaml down'
+                sh 'docker compose -f grid/${PROFILE}.yaml down'
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+services:
+  hub:
+    image: seleniarm/hub:latest
+    ports:
+      - 4444:4444
+      - 4442:4442
+      - 4443:4443
+
+  chrome:
+    image: seleniarm/node-chromium:latest
+    shm_size: '2g'
+    depends_on:
+      - hub
+    deploy:
+      replicas: 1
+    env_file: .env
+
+  firefox:
+    image: seleniarm/node-firefox:latest
+    shm_size: '2g'
+    depends_on:
+      - hub
+    deploy:
+      replicas: 1
+    env_file: .env
