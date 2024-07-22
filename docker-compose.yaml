@@ -41,8 +41,7 @@ services:
       - firefox
     environment:
       - HUB_HOST=hub
-      - MAVEN_PROFILE=${MAVEN_PROFILE}
-      - GRID_ENABLED=${GRID_ENABLED}
+      - MAVEN_PROFILE=testng-prod
+      - GRID_ENABLED=true
     volumes:
       - ./target/allure-results:/home/web-tests/target/allure-results
-      - ./src/main/resources/test-data/data.xlsx:/home/web-tests/src/main/resources/test-data/data.xlsx

@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ('Start the tests') {
+            steps {
+                sh 'docker compose up'
+            }
+            post {
+                always {
+                    allure includeProperties: false,
+                    jdk: '',
+                    results: [[path: 'target/allure-results']]
+                }
+            }
+        }
+
+        stage ('Finish the tests') {
+            steps {
+                sh 'docker compose down'
+            }
+        }
+    }
+}

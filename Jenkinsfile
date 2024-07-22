@@ -4,7 +4,7 @@ pipeline{
     stages{
         stage('Build test execution docker image'){
             steps{
-                sh "docker build -t simtran/automation-tests:latest ./grid-docker"
+                sh "docker build -t simtran/automation-tests:latest ."
             }
         }
 

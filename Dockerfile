@@ -8,8 +8,8 @@ RUN apk add curl jq
 WORKDIR home/web-tests
 
 # Copy project files
-ADD .. .
+ADD . .
 
 # Run the tests
-ENTRYPOINT sh grid-docker/runner.sh
+ENTRYPOINT sh runner.sh
 #ENTRYPOINT ["./mvnw", "install", "-Ptestng-prod", "-Dgrid-enabled=true"]
