@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage ('Execute tests') {
             steps {
-                sh './mvnw clean install -P${params.PROFILE}'
+                sh './mvnw clean install -P ${PROFILE}'
             }
             post {
                 always {
