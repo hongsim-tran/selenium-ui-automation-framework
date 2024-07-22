@@ -14,7 +14,7 @@ pipeline {
 
         stage('Execute tests'){
             steps{
-                sh 'docker compose -f grid/${PROFILE}.yaml up'
+                sh 'docker compose -f grid/${PROFILE}.yaml up --pull=always'
             }
         }
     }
