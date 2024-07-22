@@ -35,7 +35,7 @@ services:
       - SE_NODE_MAX_SESSIONS=4
 
   test-execution:
-    image: simtran/test-execution
+    image: simtran/automation-tests
     depends_on:
       - chrome
       - firefox

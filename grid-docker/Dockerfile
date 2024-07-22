@@ -11,5 +11,5 @@ WORKDIR home/web-tests
 ADD .. .
 
 # Run the tests
-ENTRYPOINT sh runner.sh
+ENTRYPOINT sh grid-docker/runner.sh
 #ENTRYPOINT ["./mvnw", "install", "-Ptestng-prod", "-Dgrid-enabled=true"]
