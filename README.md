@@ -24,7 +24,7 @@ Additionally, the framework supports writing tests in both TestNG and BDD (Cucum
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hongsim-tran/STAutomationFramework/test-execution.yml)
 ![Static Badge](https://img.shields.io/badge/Test%20report%20-%20orange?style=flat&link=https%3A%2F%2Fgithub.com%2Fhongsim-tran%2FSTAutomationFramework%2Fdeployments%2Fgithub-pages)
 
-**Example of running tests on local environemnt**
+**Example of running tests on local environment**
 
 
 https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/9383b9fd-c239-4559-9515-dc0936636715
@@ -87,8 +87,11 @@ There are 2 profiles supported: local and production.
   ```
   ./mvnw clean install -Ptestng-local
   ```
-  
-  
+  If run the Cucumber tests:
+  ```
+  ./mvnw clean install -Pcucumber-local
+  ```
+
 * Production environment:
   * Run tests: 
   ````
@@ -96,7 +99,27 @@ There are 2 profiles supported: local and production.
   ````
   If run the Cucumber tests:
     ```
-  ./mvnw clean install -Pcucumber-local
+  ./mvnw clean install -Pcucumber-prod
+    ```
+* Run tests with Docker
+  * Build the docker image for the tests
+  ```
+  docker build -t simtran/automation-tests:latest .
+  ```
+  * Run the tests with Docker. As the tests docker image doesn't contain browsers, we leverage browsers from separate Selenium Grid containers
+  - Start the Grid container
+  ```
+  docker compose -f grid/grid.yaml up -d
+  ```
+  - Start the test execution container 
+    - For TestNG tests
+    
+    ```
+    docker compose -f grid/testng-prod.yaml up --pull=always
+    ```
+    - For Cucumber tests
+    ```
+    docker compose -f grid/cucumber-prod.yaml up --pull=always
     ```
 
 ### **Tech Stacks**
@@ -104,6 +127,7 @@ There are 2 profiles supported: local and production.
 * Java: programming language
 * Maven: project management tool
 * Selenium Webdriver: web automation testing tool
+* Selenium Grid: a tool for distributing tests across multiple browsers and machines
 * TestNG: automation framework to support test creation
 * Allure Report: the testing report
 * Owner: handle configuration through properties files
@@ -111,20 +135,22 @@ There are 2 profiles supported: local and production.
 * Data faker: for generating test data
 * Lombok: to simplify test data creation for the model package 
 * Postgresql: as a JDBC driver to get connection to PostgresSQL database
-* Github Actions: CI/ CD tool
+* GitHub Actions: CI/ CD tool
 * Jenkins: CI/ CD tool
-
-
+* Docker
 
 ### **Project Structure**
 
 
 ````
 Web Automation Framework
+├── .ci
 ├── .github
-│   └── workflows
-│       └── test-execution.yml
-├── Jenkinsfile
+├── Dockerfile
+├── grid
+│   ├── cucumber-prod.yaml
+│   ├── grid.yaml
+│   └── testng-prod.yaml
 ├── pom.xml
 └── src
     └── main
@@ -132,16 +158,16 @@ Web Automation Framework
         │   └── simtran
         │       ├── core
         │       │   ├── base
-        │       │   │   ├── BasePage.java
-        │       │   │   └── BaseTest.java
+        │       │   │   └── BasePage.java
         │       │   ├── config
         │       │   │   ├── ConfigManager.java
-        │       │   │   └── Configuration.java
+        │       │   │   ├── EnvironmentConfiguration.java
+        │       │   │   └── GeneralConfiguration.java
         │       │   ├── constants
         │       │   │   └── Framework.java
         │       │   ├── enums
         │       │   │   ├── IframeIdentifier.java
-        │       │   │   └── ...
+        │       │   │   └── Months.java
         │       │   ├── exceptions
         │       │   │   └── ProvidedClassNotAnEnum.java
         │       │   ├── report
@@ -171,27 +197,33 @@ Web Automation Framework
         │           ├── pages
         │           │   ├── Page.java
         │           │   └── store
-        │           │       ├── Homepage.java
+        │           │       ├── ProductDetailsPage.java
         │           │       └── ...
         │           └── tests
         │               ├── cucumber
         │               │   ├── features
-        │               │   │   ├── Login.feature
+        │               │   │   ├── ProductDetails.feature
         │               │   │   └── ...
         │               │   ├── runner
-        │               │   │   └── TestRunner.java
+        │               │   │   ├── TestRunnerLocal.java
+        │               │   │   └── TestRunnerProd.java
         │               │   └── stepDefinitions
-        │               │       ├── LoginStep.java
+        │               │       ├── Hooks.java
+        │               │       ├── StepSetup.java
+        │               │       ├── ProductDetailsStep.java
         │               │       └── ...
         │               └── testng
-        │                   ├── LoginTests.java
+        │                   ├── ProductDetailsTests.java
         │                   └── ...
         └── resources
             ├── config
-            │   └── config.properties
+            │   ├── env.properties
+            │   └── general.properties
             ├── suites
-            │   ├── local.xml
-            │   └── prod.xml
+            │   ├── cucumber-local.xml
+            │   ├── cucumber-prod.xml
+            │   ├── testng-local.xml
+            │   └── testng-prod.xml
             └── test-data
 
 ````
@@ -330,8 +362,6 @@ Web Automation Framework
       ```
   
   * `tests`: contains automated test cases for the evershop application which are written in both TestNG and BDD (Cucumber) formats
-
-
 
 
 **Naming convention for Web UI elements**
