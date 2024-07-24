@@ -1,4 +1,4 @@
-# **Web Automation Framework**
+# **Selenium Web UI Automation Framework**
 
 ### **Description**
 
