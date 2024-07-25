@@ -68,14 +68,14 @@ https://github.com/hongsim-tran/WebAutomationFramework/assets/29735755/05839733-
 1. **Clone the Project:**
 
   ````
-  git clone https://github.com/hongsim-tran/WebAutomationFramework.git
+  git clone [https://github.com/hongsim-tran/selenium-ui-automation-framework.git](https://github.com/hongsim-tran/selenium-ui-automation-framework.git)
   ````
 
 
 2. **Run Tests:**
 
   ```
-  cd WebAutomationFramework
+  cd selenium-ui-automation-framework
   ```
 
 
