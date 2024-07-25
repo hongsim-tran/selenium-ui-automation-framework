@@ -15,7 +15,7 @@ This Java framework automates web UI testing using Selenium WebDriver, managed b
 * Distribute tests across multiple browsers and machines using docker build and Selenium Grid
 * Supports CI/CD integration with GitHub Actions and Jenkins
 
-Additionally, the framework supports writing tests in both TestNG and BDD (Cucumber) formats, offering flexibility in choosing the testing approach that best suits your needs
+Additionally, the framework supports writing tests in both TDD (TestNG) and BDD (Cucumber) formats, offering flexibility in choosing the testing approach that best suits your needs
 
 ![Static Badge](https://img.shields.io/badge/Java-green)
 ![Static Badge](https://img.shields.io/badge/Maven-blue?style=flat)
@@ -361,7 +361,7 @@ Web Automation Framework
       }
       ```
   
-  * `tests`: contains automated test cases for the evershop application which are written in both TestNG and BDD (Cucumber) formats
+  * `tests`: contains automated test cases for the evershop application which are written in both TDD (TestNG) and BDD (Cucumber) formats
 
 
 **Naming convention for Web UI elements**
