@@ -102,7 +102,7 @@ There are 2 profiles supported: local and production.
   ./mvnw clean install -Pcucumber-prod
     ```
 * Run tests with Docker
-  * Build the docker image for the tests
+  * Build the docker image for the tests (optional)
   ```
   docker build -t simtran/automation-tests:latest .
   ```
